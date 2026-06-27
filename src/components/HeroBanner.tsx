@@ -66,7 +66,7 @@ export default function HeroBanner({ onExploreClick, onFeaturedViewClick }: Hero
               {/* Floating Image Container */}
               <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-white/5 transition duration-500 group-hover:scale-105 flex items-center justify-center p-4">
                 <Image
-                  src="/Catalogo/images/mexico.png"
+                  src="images/mexico.png"
                   alt="Featured Jersey"
                   fill
                   sizes="(max-width: 768px) 100vw, 320px"
