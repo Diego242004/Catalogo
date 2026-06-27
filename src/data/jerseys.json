@@ -12,9 +12,9 @@
     "description": "Jersey oficial de local para la Selección Mexicana con patrón inspirado en el plumaje del pavo real.",
     "details": "Esta pieza presenta un diseño revolucionario que abandona el verde tradicional absoluto por un patrón detallado en verde olivo y rojo brillante inspirado en la riqueza cultural y la fauna mexicana, específicamente en el plumaje del pavo real. Cuenta con la tecnología HEAT.RDY para óptima ventilación.",
     "images": [
-      "/images/mexico.png",
-      "/images/Detalles/SomosMexico.png",
-      "/images/Detalles/Espalda.png"
+      "/Catalogo/images/mexico.png",
+      "/Catalogo/images/Detalles/SomosMexico.png",
+      "/Catalogo/images/Detalles/Espalda.png"
     ],
     "highlights": ["Mundial2026", "Tecnología Heat.RDY", "Escudos y marca bordados"],
     "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
@@ -32,9 +32,9 @@
     "description": "Camiseta de local del Real Madrid con el clásico color blanco y finos acentos dorados y negros.",
     "details": "La camiseta de local del Real Madrid 2024/25 rinde homenaje a las tradiciones del club con un patrón de 'pata de gallo' sutilmente tejido en la tela blanca. Los detalles en dorado en los hombros y las tres franjas negras clásicas de la marca le otorgan una distinción premium digna de los reyes de Europa.",
     "images": [
-      "/images/RealMadrid.png",
-      "/images/Detalles/EspaldaRL.png",
-      "/images/Detalles/DetalleRL.png"
+      "/Catalogo/images/RealMadrid.png",
+      "/Catalogo/images/Detalles/EspaldaRL.png",
+      "/Catalogo/images/Detalles/DetalleRL.png"
     ],
     "highlights": ["Edición Champions", "Acentos Dorados", "Fit Slim"],
     "observations": "Usada únicamente para exhibición, sin hilos sueltos ni manchas, escudo termo-sellado impecable."
@@ -52,9 +52,9 @@
     "description": "Camiseta de la selección campeona del mundo con las tres estrellas doradas y el parche de campeones.",
     "details": "Luce el clásico diseño a rayas celestes y blancas con detalles dorados en el escudo de la AFA, el logo de la marca y las franjas laterales. En el centro del pecho destaca el parche dorado de Campeón del Mundo de la FIFA 2022, acompañado de las tres estrellas bordadas sobre el escudo.",
     "images": [
-      "/images/argentina1.png",
-      "/images/detail_badge.png",
-      "/images/detail_back.png"
+      "/Catalogo/images/argentina1.png",
+      "/Catalogo/images/detail_badge.png",
+      "/Catalogo/images/detail_back.png"
     ],
     "highlights": ["3 Estrellas", "Parche de Campeón", "Versión Jugador"],
     "observations": "Corte de jugador (Slim fit), tejido con relieve de alta tecnología para transpiración."
@@ -72,9 +72,9 @@
     "description": "Icónica playera retro de la temporada del triplete del Manchester United con cuello tipo polo.",
     "details": "Una de las camisetas más legendarias de la historia del fútbol. Utilizada por la generación del 92 en la histórica final de la Champions League de 1999 en Barcelona. Cuenta con el clásico cuello tipo polo blanco con cierre de cremallera y detalles de Umbro grabados en las mangas.",
     "images": [
-      "/images/Manchester.png",
-      "/images/Detalles/EspaldaM.png",
-      "/images/Detalles/adidasM.png"
+      "/Catalogo/images/Manchester.png",
+      "/Catalogo/images/Detalles/EspaldaM.png",
+      "/Catalogo/images/Detalles/adidasM.png"
     ],
     "highlights": ["Retro Histórica", "Temporada del Triplete", "Cuello de Solapa"],
     "observations": "Pieza vintage de colección, excelente estado de conservación, serigrafía original del patrocinador Sharp sin cuarteaduras."
@@ -92,9 +92,9 @@
     "description": "Playera oficial de local en color amarillo crema tradicional con detalles en azul y rojo.",
     "details": "Camiseta de local inspirada en los uniformes clásicos del club de finales de los años 70. Presenta el característico color amarillo crema como base, con detalles en azul marino y rojo en el cuello y puños. Logotipo central de Nike y patrocinadores termo-transferidos.",
     "images": [
-      "/images/america_home.png",
-      "/images/detail_fabric.png",
-      "/images/detail_back.png"
+      "/Catalogo/images/america_home.png",
+      "/Catalogo/images/detail_fabric.png",
+      "/Catalogo/images/detail_back.png"
     ],
     "highlights": ["Bicampeón", "Escudo Centralizado", "Dri-FIT ADV"],
     "observations": "Etiquetas de cartón originales, código de autenticación verificado de Nike."
@@ -112,9 +112,9 @@
     "description": "La clásica camiseta bianconera con franjas verticales negras y blancas de textura lunar.",
     "details": "El diseño de esta temporada reinterpreta las clásicas franjas verticales en blanco y negro con un sutil patrón tridimensional texturizado que imita la superficie lunar. Escudo bordado en alta definición y detalles negros minimalistas en el cuello.",
     "images": [
-      "/images/juventus_home.png",
-      "/images/detail_fabric.png",
-      "/images/detail_back.png"
+      "/Catalogo/images/juventus_home.png",
+      "/Catalogo/images/detail_fabric.png",
+      "/Catalogo/images/detail_back.png"
     ],
     "highlights": ["Bianconera", "Relieve Lunático", "Ajuste Premium"],
     "observations": "Prácticamente nueva, sin hilos sueltos ni decoloración, utilizada solo para maniquí de colección."
@@ -132,9 +132,9 @@
     "description": "Camiseta del gigante alemán en un vibrante color rojo con tres tonos combinados y detalles oscuros.",
     "details": "El jersey local del FC Bayern para la temporada 24/25 combina por primera vez tres tonos diferentes de rojo en un diseño dinámico de franjas y ondas. Los detalles de las tres franjas de Adidas y los patrocinadores resaltan en un tono vino oscuro que aporta elegancia.",
     "images": [
-      "/images/bayern_home.png",
-      "/images/detail_fabric.png",
-      "/images/detail_back.png"
+      "/Catalogo/images/bayern_home.png",
+      "/Catalogo/images/detail_fabric.png",
+      "/Catalogo/images/detail_back.png"
     ],
     "highlights": ["Triple Tono", "Edición Coleccionista", "AeroReady"],
     "observations": "Pieza en empaque original sellado, talla XL ideal para exhibición extendida en marco."
@@ -152,331 +152,331 @@
     "description": "Legendaria camiseta de Boca Juniors de la época dorada bajo el mando de Carlos Bianchi.",
     "details": "Camiseta histórica utilizada en la consagración de la Copa Libertadores e Intercontinental en el año 2000. Presenta el característico color azul marino intenso con la franja amarilla horizontal ancha cruzando el pecho y el mítico patrocinio de Quilmes.",
     "images": [
-      "/images/boca_home.png",
-      "/images/detail_badge.png",
-      "/images/detail_back.png"
+      "/Catalogo/images/boca_home.png",
+      "/Catalogo/images/detail_badge.png",
+      "/Catalogo/images/detail_back.png"
     ],
     "highlights": ["Campeón Intercontinental", "Pieza Histórica", "Edición Bianchi"],
     "observations": "Pequeño desgaste de lavado en el estampado de Quilmes, costuras originales intactas, estado general de conservación 9/10."
   },
   {
-  "id": "mexico-visita-2024",
-  "team": "Selección Mexicana",
-  "category": "Selecciones Nacionales",
-  "subcategory": "CONCACAF",
-  "season": "2025/26",
-  "brand": "Adidas",
-  "type": "Visitante",
-  "condition": "Nueva con etiquetas",
-  "size": "M,L",
-  "description": "Jersey oficial de visitante para la Selección Mexicana con estética retro y el logotipo clásico de Adidas Originals.",
-  "details": "Este diseño elegante en color blanco destaca por reincorporar el icónico trifolio de Adidas Originals en el pecho. Presenta un cuello en V estilizado y bordes de las mangas con detalles contrastantes en colores verde oscuro y rojo. El tejido incorpora sutiles patrones geométricos en Jacquard de fondo y cuenta con tecnología transpirable para máximo confort.",
-  "images": [
-    "/images/mexicoVisita.jpg",
-    "/images/Detalles/EscudoMexico.png",
-    "/images/Detalles/MexicoDetalles.png"
-  ],
-  "highlights": ["Colección Adidas Originals", "Estilo Retro", "Cuello en V Tricolor"],
-  "observations": "Completamente nueva, etiquetas internas y externas intactas, sin ningún detalle de almacenamiento o costuras."
-},
-{
-  "id": "mexico-visitante-retro-2025",
-  "team": "Selección Mexicana",
-  "category": "Selecciones Nacionales",
-  "subcategory": "CONCACAF",
-  "season": "2025/26",
-  "brand": "Adidas",
-  "type": "Visitante",
-  "condition": "Nueva con etiquetas",
-  "size": "S,M,L",
-  "description": "Jersey oficial de visitante para la Selección Mexicana con estética retro y el logotipo clásico de Adidas Originals.",
-  "details": "Este diseño elegante en color blanco destaca por reincorporar el icónico trifolio de Adidas Originals en el pecho. Presenta un cuello en V estilizado y bordes de las mangas con detalles contrastantes en colores verde oscuro y rojo. El tejido incorpora sutiles patrones geométricos en Jacquard de fondo y cuenta con tecnología transpirable para máximo confort.",
-  "images": [
-    "/images/MexicoNegra.png",
-    "/images/Detalles/EspaldaNegra.png",
-    "/images/Detalles/Marca.png"
-  ],
-  "highlights": ["Colección Adidas Originals", "Versión Jugador", "Cuello en V Tricolor"],
-  "observations": "Completamente nueva, etiquetas internas y externas intactas, sin ningún detalle de almacenamiento o costuras."
-},
-{
-  "id": "alemania-retro-2024",
-  "team": "Selección de Alemania",
-  "category": "Selecciones Nacionales",
-  "subcategory": "UEFA",
-  "season": "2025/26",
-  "brand": "Adidas",
-  "type": "Local",
-  "condition": "Nueva con etiquetas",
-  "size": "S,M,L,XL",
-  "description": "Jersey de local para la Selección de Alemania con el icónico diseño geométrico inspirado en el Mundial de Italia 1990.",
-  "details": "Esta pieza rinde homenaje a uno de los diseños más legendarios de la historia del fútbol. Presenta sobre el pecho la famosa franja angular con los colores de la bandera alemana (negro, rojo y oro) entrelazándose en un patrón de diamantes, combinada con el escudo de la DFB coronado por sus 4 estrellas y el logotipo moderno de Adidas en color blanco. Cuenta con paneles negros en los hombros y detalles contrastantes en cuello y mangas.",
-  "images": [
-    "/images/Alemania.png",
-    "/images/Detalles/EspaldaA.png",
-    "/images/Detalles/DetalleA.png"
-  ],
-  "highlights": ["Diseño Icónico de 1990", "Escudo Bordado", "Detalles Tricolores"],
-  "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
-},
-{
-  "id": "alemania-visitante-retro-2024",
-  "team": "Selección de Alemania",
-  "category": "Selecciones Nacionales",
-  "subcategory": "UEFA",
-  "season": "2024/25",
-  "brand": "Adidas",
-  "type": "Visitante",
-  "condition": "Nueva con etiquetas",
-  "size": "S,M,L,XL",
-  "description": "Jersey de visitante para la Selección de Alemania con estética retro, detalles en verde menta y el logotipo clásico de Adidas Originals.",
-  "details": "Esta pieza presenta un diseño elegante en un tono azul oscuro o marino profundo, complementado con el icónico trifolio de Adidas Originals en el pecho y el escudo clásico de la DFB coronado por sus 4 estrellas. Destaca por un sutil patrón de pequeños rombos o diamantes en color verde menta distribuidos de manera uniforme por toda la prenda, además de líneas contrastantes en el cuello en V y en los bordes de las mangas. Incluye una etiqueta especial retro cosida en la parte inferior derecha.",
-  "images": [
-    "/images/AlemaniaV.png",
-     "/images/Detalles/EspaldaAV.png",
-     "/images/Detalles/DetalleAV.png"
-  ],
-  "highlights": ["Colección Adidas Originals", "Estilo Retro", "Detalles Verde Menta"],
-  "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
-},
-{
-  "id": "espana-local-retro-2024",
-  "team": "Selección de España",
-  "category": "Selecciones Nacionales",
-  "subcategory": "UEFA",
-  "season": "2024/25",
-  "brand": "Adidas",
-  "type": "Local",
-  "condition": "Nueva con etiquetas",
-  "size": "XL",
-  "description": "Jersey de local para la Selección de España con diseño retro inspirado en el clásico de la Eurocopa 1996.",
-  "details": "Esta pieza rinde homenaje al icónico diseño de mediados de los 90. Presenta una base roja clásica combinada con mangas raglán en un elegante tono azul marino. Destaca por el patrón de finas líneas verticales amarillas y texturas Jacquard integradas en el torso, además del escudo de la RFEF monocromático en amarillo coronado por su estrella de campeones y el logotipo moderno de Adidas en el mismo color. Las tradicionales tres franjas de la marca recorren los hombros en color amarillo.",
-  "images": [
-    "/images/Espana.png",
-    "/images/Detalles/EspaldaE.png",
-    "/images/Detalles/DetalleE.png"
-  ],
-  "highlights": ["Inspiración Euro 1996", "Escudo Monocromático", "Detalles Jacquard"],
-  "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
-},
-{
-  "id": "espana-visitante-retro-2024",
-  "team": "Selección de España",
-  "category": "Selecciones Nacionales",
-  "subcategory": "UEFA",
-  "season": "2024/25",
-  "brand": "Adidas",
-  "type": "Visitante",
-  "condition": "Nueva con etiquetas",
-  "size": "S,M,L,XL",
-  "description": "Jersey de visitante para la Selección de España con estética retro premium, tonos crema y el logotipo clásico de Adidas Originals.",
-  "details": "Esta pieza destaca por su elegante base en color blanco roto o crema, ofreciendo una alternativa sofisticada y clásica. Incorpora el icónico trébol de Adidas Originals en el pecho y el escudo tradicional de la RFEF coronado por su estrella, ambos aplicados en un elegante tono rojo vino (borgoña). El cuello redondo estilizado presenta un diseño cruzado que combina detalles en color borgoña y un sutil borde dorado/mostaza, patrón tricolor que se replica de forma idéntica en los remates de las mangas. Las icónicas tres franjas de Adidas recorren los hombros en color vino.",
-  "images": [
-    "/images/EspanaV.png",
-    "/images/Detalles/EspaldaEV.png",
-    "/images/Detalles/DetalleEV.png"
-  ],
-  "highlights": ["Colección Adidas Originals", "Estilo Retro Premium", "Detalles Tricolores"],
-  "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
-},
-{
-  "id": "portugal-visitante-2024",
-  "team": "Selección de Portugal",
-  "category": "Selecciones Nacionales",
-  "subcategory": "UEFA",
-  "season": "2024/25",
-  "brand": "Puma",
-  "type": "Visitante",
-  "condition": "Nueva con etiquetas",
-  "size": "S,M,L,XL",
-  "description": "Jersey de visitante para la Selección de Portugal con un diseño artístico vanguardista que rinde homenaje a la cultura náutica del país.",
-  "details": "Esta pieza destaca por su audaz base en color blanco combinada con un patrón gráfico dinámico en tonos verde menta y verde agua, el cual simula el movimiento de las olas del mar en una gran sección en forma de V sobre el pecho y los hombros. Presenta el escudo de la Federación Portuguesa de Fútbol centrado en el pecho, justo arriba del logotipo de Puma aplicado en color vino/rojo oscuro. Cuenta con paneles transpirables en las axilas y un cuello redondo minimalista en color blanco con sutiles detalles contrastantes.",
-  "images": [
-    "/images/PortugalV.png",
-    "/images/Detalles/EspaldaPV.png",
-    "/images/Detalles/DetallePV.png"
-  ],
-  "highlights": ["Diseño Náutico Vanguardista", "Escudo Centrado", "Tecnología Ultraweave/DryCell"],
-  "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
-},
-{
-  "id": "portugal-entrenamiento-2024",
-  "team": "Selección de Portugal",
-  "category": "Selecciones Nacionales",
-  "subcategory": "UEFA",
-  "season": "2024/25",
-  "brand": "Puma",
-  "type": "Entrenamiento",
-  "condition": "Nueva con etiquetas",
-  "size": "S,M,L,XL",
-  "description": "Jersey de entrenamiento oficial para la Selección de Portugal con un diseño abstracto dinámico basado en patrones de semitono.",
-  "details": "Esta pieza destaca por su base en color blanco, decorada con un llamativo patrón gráfico abstracto de líneas curvas y ondas formadas por pequeños puntos en degradados de color verde agua, verde menta y sutiles destellos rojizos. Cuenta con el escudo de la Federación Portuguesa de Fútbol en el pecho izquierdo y el logotipo de Puma en el derecho en color negro. El cuello redondo y los remates parciales de las mangas contrastan elegantemente en color negro sólido, e incluye una etiqueta de autenticidad de la marca en la esquina inferior derecha.",
-  "images": [
-    "/images/PortugalB.png",
-    "/images/Detalles/EspaldaPB.png",
-    "/images/Detalles/DetallePB.png"
-  ],
-  "highlights": ["Línea Oficial de Entrenamiento", "Gráficos de Semitono Dinámicos", "Tecnología DryCell"],
-  "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
-},
-{
-  "id": "real-madrid-visitante-2024",
-  "team": "Real Madrid",
-  "category": "Europa",
-  "subcategory": "La Liga",
-  "season": "2025/26",
-  "brand": "Adidas",
-  "type": "Visitante",
-  "condition": "Nueva con etiquetas",
-  "size": "S,M,L,XL",
-  "description": "Jersey de visitante para el Real Madrid con un elegante patrón de líneas horizontales texturizadas y detalles en contraste fluorescente.",
-  "details": "Esta pieza presenta una base en un sofisticado tono azul naranja/marino con un sutil patrón de líneas horizontales texturizadas en Jacquard por toda la prenda. El escudo del Real Madrid, el logotipo de Adidas y el patrocinador principal 'Emirates Fly Better' resaltan en color blanco, mientras que un fino vivo en tono verde/amarillo fluorescente delimita los paneles laterales y el cuello redondo, dándole un toque moderno. En la manga izquierda incluye el logotipo del patrocinador 'hp' en color blanco.",
-  "images": [
-    "/images/RealMadridV.png",
-    "/images/Detalles/EspaldaRV.png",
-    "/images/Detalles/DetalleRV.png"
-  ],
-  "highlights": ["Patrón Jacquard Texturizado", "Detalles Fluorescentes", "Patrocinador HP en Manga"],
-  "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
-},
-{
-  "id": "mexico-edicion-especial-oro",
-  "team": "Selección Mexicana",
-  "category": "Selecciones Nacionales",
-  "subcategory": "CONCACAF",
-  "season": "2024/25",
-  "brand": "Adidas",
-  "type": "Edición Especial",
-  "condition": "Nueva con etiquetas",
-  "size": "S,M,L,XL",
-  "description": "Jersey de edición especial para la Selección Mexicana con un diseño blackout premium, detalles dorados y el logotipo clásico de Adidas Originals.",
-  "details": "Esta pieza destaca por su elegante base en color negro mate que incorpora un sofisticado patrón Jacquard texturizado de figuras radiales y geométricas inspiradas en el arte prehispánico mexicano. Presenta el icónico logotipo de Adidas Originals (trifolio) y una versión estilizada y clásica del águila de la selección centrados en el pecho, ambos aplicados en un acabado dorado metálico premium. Las tres franjas tradicionales de la marca en los hombros y los detallados remates de las mangas lucen un patrón artesanal también en color oro, logrando un contraste único de alta gama.",
-  "images": [
-    "/images/MexicoOro.png",
-    "/images/Detalles/EspaldaMO.png",
-    "/images/Detalles/DetalleMO.png"
-  ],
-  "highlights": ["Colección Adidas Originals", "Edición Especial Oro", "Patrón Prehispánico Jacquard"],
-  "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
-},
-{
-  "id": "psg-local-2023-24",
-  "team": "Paris Saint-Germain",
-  "category": "Clubes",
-  "subcategory": "Ligue 1",
-  "season": "2023/24",
-  "brand": "Nike",
-  "type": "Local",
-  "condition": "Nueva con etiquetas",
-  "size": "S,M,L,XL",
-  "description": "Jersey oficial de local para el Paris Saint-Germain con una reinterpretación moderna de la icónica franja Hechter y gráficos tonales.",
-  "details": "Esta pieza mantiene el clásico azul marino del club parisino, destacando por un sofisticado patrón geométrico entrelazado sobre toda la base de la tela. En el centro, la tradicional franja vertical roja se actualiza con un efecto dinámico y bordes de diseño cruzado en color blanco. Incluye el escudo del PSG a color, el logotipo de Nike (Swoosh) y el patrocinador principal 'Qatar Airways' resaltando en blanco al frente. Cuenta con tecnología de ventilación avanzada.",
-  "images": [
-    "/images/ParisL.png",
-    "/images/Detalles/EspaldaPL.png",
-    "/images/Detalles/DetallePL.png"
-  ],
-  "highlights": ["Diseño Hechter Moderno", "Patrón Geométrico Tonal", "Tecnología Dri-FIT"],
-  "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
-},
-{
-  "id": "puebla-local-23-24",
-  "team": "Club Puebla",
-  "category": "Fútbol MX",
-  "subcategory": "Liga MX",
-  "season": "2023/24",
-  "brand": "Pirma",
-  "type": "Local",
-  "condition": "Nueva con etiquetas",
-  "size": "S,M,L,XL",
-  "description": "Jersey oficial de local para el Club Puebla, destacando su tradicional franja diagonal con un diseño artístico de trazos de pintura.",
-  "details": "Esta prenda mantiene la identidad histórica del equipo poblano con su base blanca y la icónica franja diagonal cruzando el pecho. En esta edición, la franja presenta un diseño estilizado tipo brochazo que mezcla diferentes tonalidades de azul. Destaca también por incorporar sutiles líneas de fondo que dibujan la espiral de la proporción áurea. Incluye el escudo del Club Puebla, el logotipo de Pirma en color negro y los patrocinadores principales como Volkswagen y Caliente.mx. Los remates de las mangas y el cuello presentan detalles en un tono azul claro.",
-  "images": [
-    "/images/PueblaL.png",
-    "/images/Detalles/EspaldaPUE.png",
-    "/images/Detalles/DetallePUE.png"
-  ],
-  "highlights": ["Franja Estilo Brochazo", "Gráficos de Proporción Áurea", "Detalles en Contraste Celeste"],
-  "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
-},
-{
-  "id": "colombia-centenario-retro-2024",
-  "team": "Selección de Colombia",
-  "category": "Selecciones Nacionales",
-  "subcategory": "CONMEBOL",
-  "season": "2024",
-  "brand": "Adidas",
-  "type": "Edición Especial",
-  "condition": "Nueva con etiquetas",
-  "size": "S,M,L,XL",
-  "description": "Jersey de edición especial conmemorativa por el centenario de la Selección de Colombia, con un diseño retro premium y el logotipo clásico de Adidas Originals.",
-  "details": "Esta exclusiva pieza rinde homenaje a los 100 años de la Federación Colombiana de Fútbol (FCF). Presenta una base en color crema (blanco hueso), atravesada en el pecho por una franja tricolor horizontal con los colores de la bandera nacional (amarillo, azul y rojo) en tonos sutiles y vintage. El escudo de la FCF y el icónico trifolio de Adidas Originals están bordados de forma tonal, fundiéndose elegantemente con el color de la camiseta. El cuello redondo y los puños acanalados incluyen finas líneas tricolores, y en el interior del cuello destaca el logo dorado conmemorativo del centenario.",
-  "images": [
-    "/images/Colombia.png",
-    "/images/Detalles/EspaldaCOL.png",
-    "/images/Detalles/DetalleCol.png"
-  ],
-  "highlights": ["Edición Conmemorativa 100 Años", "Colección Adidas Originals", "Escudo Tonal Bordado"],
-  "observations": "Completamente nueva, etiqueta de autenticidad intacta, pieza de colección de edición especial."
-},
-{
-  "id": "cruz-azul-local-2024",
-  "team": "Cruz Azul",
-  "category": "Fútbol MX",
-  "subcategory": "Liga MX",
-  "season": "2025/26",
-  "brand": "Pirma",
-  "type": "Local",
-  "condition": "Nueva con etiquetas",
-  "size": "S,M,L,XL",
-  "description": "Jersey oficial de local para Cruz Azul con el icónico uniforme azul y detalles en blanco.",
-  "details": "Esta pieza presenta el distintivo color azul royal del equipo capitalino combinado con paneles blancos en las axilas para óptima ventilación. Destaca por el escudo de la Cruz Azul bordado en el pecho con sus líneas características en color blanco y azul. El logotipo de Nike (Swoosh) y los patrocinadores principales resaltan en color blanco. La prenda incorpora tecnología Dri-FIT ADV para máximo confort y transpiración durante el juego.",
-  "images": [
-    "/images/CruzAzul.png",
-    "/images/Detalles/EspaldaCRUZ.png",
-    "/images/Detalles/DetalleCRUZ.png"
-  ],
-  "highlights": ["Equipo Histórico", "Uniforme Azul Clásico", "Tecnología Dri-FIT ADV"],
-  "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
-},
-{
-  "id": "pumas-local-2025",
-  "team": "Pumas UNAM",
-  "category": "Fútbol MX",
-  "subcategory": "Liga MX",
-  "season": "2025/26",
-  "brand": "Nike",
-  "type": "Local",
-  "condition": "Nueva con etiquetas",
-  "size": "S,M,L,XL",
-  "description": "Jersey oficial de local para Pumas UNAM con el clásico uniforme azul y oro con detalles modernos.",
-  "details": "Esta pieza combina el icónico azul marino de la Universidad Nacional Autónoma de México con acentos dorados y blancos. Presenta el escudo de la UNAM bordado en el pecho acompañado del logotipo de Nike (Swoosh) en color blanco. Cuenta con un patrón geométrico sutil en toda la prenda que rinde homenaje a la arquitectura de Ciudad Universitaria. La tecnología Dri-FIT ADV proporciona máxima transpiración y confort durante el juego.",
-  "images": [
-    "/images/Pumas.png",
-    "/images/Detalles/EspaldaPUMAS.png",
-    "/images/Detalles/DetallePUMAS.png"
-  ],
-  "highlights": ["Clásico Azul y Oro", "Escudo UNAM Bordado", "Tecnología Dri-FIT ADV"],
-  "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
-},
-{
-  "id": "nycfc-local-2024",
-  "team": "New York City FC",
-  "category": "Otros",
-  "subcategory": "MLS",
-  "season": "2025/26",
-  "brand": "Adidas",
-  "type": "Local",
-  "condition": "Nueva con etiquetas",
-  "size": "S,M,L,XL",
-  "description": "Jersey oficial de local para el New York City FC con un dinámico diseño de bloques geométricos tonales.",
-  "details": "Escudos bordados, este jersey presenta la tradicional base azul celeste del equipo neoyorquino, reinventada con un patrón moderno de bloques asimétricos y franjas diagonales en diferentes tonos de azul. Cuenta con el escudo del NYCFC, el logotipo de Adidas y el patrocinador principal 'Etihad Airways' resaltando en un elegante color azul marino oscuro. Incluye cuello redondo con detalles marinos y naranjas, las clásicas tres franjas en blanco sobre los hombros, y una etiqueta especial tejida en la parte inferior derecha.",
-  "images": [
-    "/images/NewYork.png",
-    "/images/Detalles/EspaldaNY.png",
-    "/images/Detalles/DetalleNY.png"
-  ],
-  "highlights": ["Kit '24/7' Oficial", "Diseño Geométrico Asimétrico", "Tecnología Aeroready"],
-  "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
-}
+    "id": "mexico-visita-2024",
+    "team": "Selección Mexicana",
+    "category": "Selecciones Nacionales",
+    "subcategory": "CONCACAF",
+    "season": "2025/26",
+    "brand": "Adidas",
+    "type": "Visitante",
+    "condition": "Nueva con etiquetas",
+    "size": "M,L",
+    "description": "Jersey oficial de visitante para la Selección Mexicana con estética retro y el logotipo clásico de Adidas Originals.",
+    "details": "Este diseño elegante en color blanco destaca por reincorporar el icónico trifolio de Adidas Originals en el pecho. Presenta un cuello en V estilizado y bordes de las mangas con detalles contrastantes en colores verde oscuro y rojo. El tejido incorpora sutiles patrones geométricos en Jacquard de fondo y cuenta con tecnología transpirable para máximo confort.",
+    "images": [
+      "/Catalogo/images/mexicoVisita.jpg",
+      "/Catalogo/images/Detalles/EscudoMexico.png",
+      "/Catalogo/images/Detalles/MexicoDetalles.png"
+    ],
+    "highlights": ["Colección Adidas Originals", "Estilo Retro", "Cuello en V Tricolor"],
+    "observations": "Completamente nueva, etiquetas internas y externas intactas, sin ningún detalle de almacenamiento o costuras."
+  },
+  {
+    "id": "mexico-visitante-retro-2025",
+    "team": "Selección Mexicana",
+    "category": "Selecciones Nacionales",
+    "subcategory": "CONCACAF",
+    "season": "2025/26",
+    "brand": "Adidas",
+    "type": "Visitante",
+    "condition": "Nueva con etiquetas",
+    "size": "S,M,L",
+    "description": "Jersey oficial de visitante para la Selección Mexicana con estética retro y el logotipo clásico de Adidas Originals.",
+    "details": "Este diseño elegante en color blanco destaca por reincorporar el icónico trifolio de Adidas Originals en el pecho. Presenta un cuello en V estilizado y bordes de las mangas con detalles contrastantes en colores verde oscuro y rojo. El tejido incorpora sutiles patrones geométricos en Jacquard de fondo y cuenta con tecnología transpirable para máximo confort.",
+    "images": [
+      "/Catalogo/images/MexicoNegra.png",
+      "/Catalogo/images/Detalles/EspaldaNegra.png",
+      "/Catalogo/images/Detalles/Marca.png"
+    ],
+    "highlights": ["Colección Adidas Originals", "Versión Jugador", "Cuello en V Tricolor"],
+    "observations": "Completamente nueva, etiquetas internas y externas intactas, sin ningún detalle de almacenamiento o costuras."
+  },
+  {
+    "id": "alemania-retro-2024",
+    "team": "Selección de Alemania",
+    "category": "Selecciones Nacionales",
+    "subcategory": "UEFA",
+    "season": "2025/26",
+    "brand": "Adidas",
+    "type": "Local",
+    "condition": "Nueva con etiquetas",
+    "size": "S,M,L,XL",
+    "description": "Jersey de local para la Selección de Alemania con el icónico diseño geométrico inspirado en el Mundial de Italia 1990.",
+    "details": "Esta pieza rinde homenaje a uno de los diseños más legendarios de la historia del fútbol. Presenta sobre el pecho la famosa franja angular con los colores de la bandera alemana (negro, rojo y oro) entrelazándose en un patrón de diamantes, combinada con el escudo de la DFB coronado por sus 4 estrellas y el logotipo moderno de Adidas en color blanco. Cuenta con paneles negros en los hombros y detalles contrastantes en cuello y mangas.",
+    "images": [
+      "/Catalogo/images/Alemania.png",
+      "/Catalogo/images/Detalles/EspaldaA.png",
+      "/Catalogo/images/Detalles/DetailA.png"
+    ],
+    "highlights": ["Diseño Icónico de 1990", "Escudo Bordado", "Detalles Tricolores"],
+    "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
+  },
+  {
+    "id": "alemania-visitante-retro-2024",
+    "team": "Selección de Alemania",
+    "category": "Selecciones Nacionales",
+    "subcategory": "UEFA",
+    "season": "2024/25",
+    "brand": "Adidas",
+    "type": "Visitante",
+    "condition": "Nueva con etiquetas",
+    "size": "S,M,L,XL",
+    "description": "Jersey de visitante para la Selección de Alemania con estética retro, detalles en verde menta y el logotipo clásico de Adidas Originals.",
+    "details": "Esta pieza presenta un diseño elegante en un tono azul oscuro o marino profundo, complementado con el icónico trifolio de Adidas Originals en el pecho y el escudo clásico de la DFB coronado por sus 4 estrellas. Destaca por un sutil patrón de pequeños rombos o diamantes en color verde menta distribuidos de manera uniforme por toda la prenda, además de líneas contrastantes en el cuello en V y en los bordes de las mangas. Incluye una etiqueta especial retro cosida en la parte inferior derecha.",
+    "images": [
+      "/Catalogo/images/AlemaniaV.png",
+      "/Catalogo/images/Detalles/EspaldaAV.png",
+      "/Catalogo/images/Detalles/DetailAV.png"
+    ],
+    "highlights": ["Colección Adidas Originals", "Estilo Retro", "Detalles Verde Menta"],
+    "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
+  },
+  {
+    "id": "espana-local-retro-2024",
+    "team": "Selección de España",
+    "category": "Selecciones Nacionales",
+    "subcategory": "UEFA",
+    "season": "2024/25",
+    "brand": "Adidas",
+    "type": "Local",
+    "condition": "Nueva con etiquetas",
+    "size": "XL",
+    "description": "Jersey de local para la Selección de España con diseño retro inspirado en el clásico de la Eurocopa 1996.",
+    "details": "Esta pieza rinde homenaje al icónico diseño de mediados de los 90. Presenta una base roja clásica combinada con mangas raglán en un elegante tono azul marino. Destaca por el patrón de finas líneas verticales amarillas y texturas Jacquard integradas en el torso, además del escudo de la RFEF monocromático en amarillo coronado por su estrella de campeones y el logotipo moderno de Adidas en el mismo color. Las tradicionales tres franjas de la marca recorren los hombros en color amarillo.",
+    "images": [
+      "/Catalogo/images/Espana.png",
+      "/Catalogo/images/Detalles/EspaldaE.png",
+      "/Catalogo/images/Detalles/DetalleE.png"
+    ],
+    "highlights": ["Inspiración Euro 1996", "Escudo Monocromático", "Detalles Jacquard"],
+    "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
+  },
+  {
+    "id": "espana-visitante-retro-2024",
+    "team": "Selección de España",
+    "category": "Selecciones Nacionales",
+    "subcategory": "UEFA",
+    "season": "2024/25",
+    "brand": "Adidas",
+    "type": "Visitante",
+    "condition": "Nueva con etiquetas",
+    "size": "S,M,L,XL",
+    "description": "Jersey de visitante para la Selección de España con estética retro premium, tonos crema y el logotipo clásico de Adidas Originals.",
+    "details": "Esta pieza destaca por su elegante base en color blanco roto o crema, ofreciendo una alternativa sofisticada y clásica. Incorpora el icónico trébol de Adidas Originals en el pecho y el escudo tradicional de la RFEF coronado por su estrella, ambos aplicados en un elegante tono rojo vino (borgoña). El cuello redondo profesional presenta un diseño cruzado que combina detalles en color borgoña y un sutil borde dorado/mostaza, patrón tricolor que se replica de forma idéntica en los remates de las mangas. Las icónicas tres franjas de Adidas recorren los hombros en color vino.",
+    "images": [
+      "/Catalogo/images/EspanaV.png",
+      "/Catalogo/images/Detalles/EspaldaEV.png",
+      "/Catalogo/images/Detalles/DetalleEV.png"
+    ],
+    "highlights": ["Colección Adidas Originals", "Estilo Retro Premium", "Detalles Tricolores"],
+    "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
+  },
+  {
+    "id": "portugal-visitante-2024",
+    "team": "Selección de Portugal",
+    "category": "Selecciones Nacionales",
+    "subcategory": "UEFA",
+    "season": "2024/25",
+    "brand": "Puma",
+    "type": "Visitante",
+    "condition": "Nueva con etiquetas",
+    "size": "S,M,L,XL",
+    "description": "Jersey de visitante para la Selección de Portugal con un diseño artístico vanguardista que rinde homenaje a la cultura náutica del país.",
+    "details": "Esta pieza destaca por su audaz base en color blanco combinada con un patrón gráfico dinámico en tonos verde menta y verde agua, el cual simula el movimiento de las olas del mar en una gran sección en forma de V sobre el pecho y los hombros. Presenta el escudo de la Federación Portuguesa de Fútbol centrado en el pecho, justo arriba del logotipo de Puma aplicado en color vino/rojo oscuro. Cuenta con paneles transpirables en las axilas y un cuello redondo minimalista en color blanco con sutiles detalles contrastantes.",
+    "images": [
+      "/Catalogo/images/PortugalV.png",
+      "/Catalogo/images/Detalles/EspaldaPV.png",
+      "/Catalogo/images/Detalles/DetallePV.png"
+    ],
+    "highlights": ["Diseño Náutico Vanguardista", "Escudo Centrado", "Tecnología Ultraweave/DryCell"],
+    "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
+  },
+  {
+    "id": "portugal-entrenamiento-2024",
+    "team": "Selección de Portugal",
+    "category": "Selecciones Nacionales",
+    "subcategory": "UEFA",
+    "season": "2024/25",
+    "brand": "Puma",
+    "type": "Entrenamiento",
+    "condition": "Nueva con etiquetas",
+    "size": "S,M,L,XL",
+    "description": "Jersey de entrenamiento oficial para la Selección de Portugal con un diseño abstracto dinámico basado en patrones de semitono.",
+    "details": "Esta pieza destaca por su base en color blanco, decorada con un llamativo patrón gráfico abstracto de líneas curvas y ondas formadas por pequeños puntos en degradados de color verde agua, verde menta y sutiles destellos rojizos. Cuenta con el escudo de la Federación Portuguesa de Fútbol en el pecho izquierdo y el logotipo de Puma en el derecho en color negro. El cuello redondo y los remates parciales de las mangas contrastan elegantemente en color negro sólido, e incluye una etiqueta de autenticidad de la marca en la esquina inferior derecha.",
+    "images": [
+      "/Catalogo/images/PortugalB.png",
+      "/Catalogo/images/Detalles/EspaldaPB.png",
+      "/Catalogo/images/Detalles/DetallePB.png"
+    ],
+    "highlights": ["Línea Oficial de Entrenamiento", "Gráficos de Semitono Dinámicos", "Tecnología DryCell"],
+    "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
+  },
+  {
+    "id": "real-madrid-visitante-2024",
+    "team": "Real Madrid",
+    "category": "Europa",
+    "subcategory": "La Liga",
+    "season": "2025/26",
+    "brand": "Adidas",
+    "type": "Visitante",
+    "condition": "Nueva con etiquetas",
+    "size": "S,M,L,XL",
+    "description": "Jersey de visitante para el Real Madrid con un elegante patrón de líneas horizontales texturizadas y detalles en contraste fluorescente.",
+    "details": "Esta pieza presenta una base en un sofisticado tono azul naranja/marino con un sutil patrón de líneas horizontales texturizadas en Jacquard por toda la prenda. El escudo del Real Madrid, el logotipo de Adidas y el patrocinador principal 'Emirates Fly Better' resaltan en color blanco, mientras que un fino vivo en tono verde/amarillo fluorescente delimita los paneles laterales y el cuello redondo, dándole un toque moderno. En la manga izquierda incluye el logotipo del patrocinador 'hp' en color blanco.",
+    "images": [
+      "/Catalogo/images/RealMadridV.png",
+      "/Catalogo/images/Detalles/EspaldaRV.png",
+      "/Catalogo/images/Detalles/DetalleRV.png"
+    ],
+    "highlights": ["Patrón Jacquard Texturizado", "Detalles Fluorescentes", "Patrocinador HP en Manga"],
+    "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
+  },
+  {
+    "id": "mexico-edicion-especial-oro",
+    "team": "Selección Mexicana",
+    "category": "Selecciones Nacionales",
+    "subcategory": "CONCACAF",
+    "season": "2024/25",
+    "brand": "Adidas",
+    "type": "Edición Especial",
+    "condition": "Nueva con etiquetas",
+    "size": "S,M,L,XL",
+    "description": "Jersey de edición especial para la Selección Mexicana con un diseño blackout premium, detalles dorados y el logotipo clásico de Adidas Originals.",
+    "details": "Esta pieza destaca por su elegante base en color negro mate que incorpora un sofisticado patrón Jacquard texturizado de figuras radiales y geométricas inspiradas en el arte prehispánico mexicano. Presenta el icónico logotipo de Adidas Originals (trifolio) y una versión estilizada y clásica del águila de la selección centrados en el pecho, ambos aplicados en un acabado dorado metálico premium. Las tres franjas tradicionales de la marca en los hombros y los detallados remates de las mangas lucen un patrón artesanal también en color oro, logrando un contraste único de alta gama.",
+    "images": [
+      "/Catalogo/images/MexicoOro.png",
+      "/Catalogo/images/Detalles/EspaldaMO.png",
+      "/Catalogo/images/Detalles/DetalleMO.png"
+    ],
+    "highlights": ["Colección Adidas Originals", "Edición Especial Oro", "Patrón Prehispánico Jacquard"],
+    "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
+  },
+  {
+    "id": "psg-local-2023-24",
+    "team": "Paris Saint-Germain",
+    "category": "Clubes",
+    "subcategory": "Ligue 1",
+    "season": "2023/24",
+    "brand": "Nike",
+    "type": "Local",
+    "condition": "Nueva con etiquetas",
+    "size": "S,M,L,XL",
+    "description": "Jersey oficial de local para el Paris Saint-Germain con una reinterpretación moderna de la icónica franja Hechter y gráficos tonales.",
+    "details": "Esta pieza mantiene el clásico azul marino del club parisino, destacando por un sofisticado patrón geométrico entrelazado sobre toda la base de la tela. En el centro, la tradicional franja vertical roja se actualiza con un efecto dinámico y bordes de diseño cruzado en color blanco. Incluye el escudo del PSG a color, el logotipo de Nike (Swoosh) y el patrocinador principal 'Qatar Airways' resaltando en blanco al frente. Cuenta con tecnología de ventilación avanzada.",
+    "images": [
+      "/Catalogo/images/ParisL.png",
+      "/Catalogo/images/Detalles/EspaldaPL.png",
+      "/Catalogo/images/Detalles/DetallePL.png"
+    ],
+    "highlights": ["Diseño Hechter Moderno", "Patrón Geométrico Tonal", "Tecnología Dri-FIT"],
+    "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
+  },
+  {
+    "id": "puebla-local-23-24",
+    "team": "Club Puebla",
+    "category": "Fútbol MX",
+    "subcategory": "Liga MX",
+    "season": "2023/24",
+    "brand": "Pirma",
+    "type": "Local",
+    "condition": "Nueva con etiquetas",
+    "size": "S,M,L,XL",
+    "description": "Jersey oficial de local para el Club Puebla, destacando su tradicional franja diagonal con un diseño artístico de trazos de pintura.",
+    "details": "Esta prenda mantiene la identidad histórica del equipo poblano con su base blanca y la icónica franja diagonal cruzando el pecho. En esta edición, la franja presenta un diseño estilizado tipo brochazo que mezcla diferentes tonalidades de azul. Destaca también por incorporar sutiles líneas de fondo que dibujan la espiral de la proporción áurea. Incluye el escudo del Club Puebla, el logotipo de Pirma en color negro y los patrocinadores principales como Volkswagen y Caliente.mx. Los remates de las mangas y el cuello presentan detalles en un tono azul claro.",
+    "images": [
+      "/Catalogo/images/PueblaL.png",
+      "/Catalogo/images/Detalles/EspaldaPUE.png",
+      "/Catalogo/images/Detalles/DetallePUE.png"
+    ],
+    "highlights": ["Franja Estilo Brochazo", "Gráficos de Proporción Áurea", "Detalles en Contraste Celeste"],
+    "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
+  },
+  {
+    "id": "colombia-centenario-retro-2024",
+    "team": "Selección de Colombia",
+    "category": "Selecciones Nacionales",
+    "subcategory": "CONMEBOL",
+    "season": "2024",
+    "brand": "Adidas",
+    "type": "Edición Especial",
+    "condition": "Nueva con etiquetas",
+    "size": "S,M,L,XL",
+    "description": "Jersey de edición especial conmemorativa por el centenario de la Selección de Colombia, con un diseño retro premium y el logotipo clásico de Adidas Originals.",
+    "details": "Esta exclusiva pieza rinde homenaje a los 100 años de la Federación Colombiana de Fútbol (FCF). Presenta una base en color crema (blanco hueso), atravesada en el pecho por una franja tricolor horizontal con los colores de la bandera nacional (amarillo, azul y rojo) en tonos sutiles y vintage. El escudo de la FCF y el icónico trifolio de Adidas Originals están bordados de forma tonal, fundiéndose elegantemente con el color de la camiseta. El cuello redondo y los puños acanalados incluyen finas líneas tricolores, y en el interior del cuello destaca el logo dorado conmemorativo del centenario.",
+    "images": [
+      "/Catalogo/images/Colombia.png",
+      "/Catalogo/images/Detalles/EspaldaCOL.png",
+      "/Catalogo/images/Detalles/DetalleCol.png"
+    ],
+    "highlights": ["Edición Conmemorativa 100 Años", "Colección Adidas Originals", "Escudo Tonal Bordado"],
+    "observations": "Completamente nueva, etiqueta de autenticidad intacta, pieza de colección de edición especial."
+  },
+  {
+    "id": "cruz-azul-local-2024",
+    "team": "Cruz Azul",
+    "category": "Fútbol MX",
+    "subcategory": "Liga MX",
+    "season": "2025/26",
+    "brand": "Pirma",
+    "type": "Local",
+    "condition": "Nueva con etiquetas",
+    "size": "S,M,L,XL",
+    "description": "Jersey oficial de local para Cruz Azul con el icónico uniforme azul y detalles en blanco.",
+    "details": "Esta pieza presenta el distintivo color azul royal del equipo capitalino combinado con paneles blancos en las axilas para óptima ventilación. Destaca por el escudo de la Cruz Azul bordado en el pecho con sus líneas características en color blanco y azul. El logotipo de Nike (Swoosh) y los patrocinadores principales resurrection en color blanco. La prenda incorpora tecnología Dri-FIT ADV para máximo confort y transpiración durante el juego.",
+    "images": [
+      "/Catalogo/images/CruzAzul.png",
+      "/Catalogo/images/Detalles/EspaldaCRUZ.png",
+      "/Catalogo/images/Detalles/DetalleCRUZ.png"
+    ],
+    "highlights": ["Equipo Histórico", "Uniforme Azul Clásico", "Tecnología Dri-FIT ADV"],
+    "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
+  },
+  {
+    "id": "pumas-local-2025",
+    "team": "Pumas UNAM",
+    "category": "Fútbol MX",
+    "subcategory": "Liga MX",
+    "season": "2025/26",
+    "brand": "Nike",
+    "type": "Local",
+    "condition": "Nueva con etiquetas",
+    "size": "S,M,L,XL",
+    "description": "Jersey oficial de local para Pumas UNAM con el clásico uniforme azul y oro con detalles modernos.",
+    "details": "Esta pieza combina el icónico azul marino de la Universidad Nacional Autónoma de México con acentos dorados y blancos. Presenta el escudo de la UNAM bordado en el pecho acompañado del logotipo de Nike (Swoosh) en color blanco. Cuenta con un patrón geométrico sutil en toda la prenda que rinde homenaje a la arquitectura de Ciudad Universitaria. La tecnología Dri-FIT ADV proporciona máxima transpiración y confort durante el juego.",
+    "images": [
+      "/Catalogo/images/Pumas.png",
+      "/Catalogo/images/Detalles/EspaldaPUMAS.png",
+      "/Catalogo/images/Detalles/DetallePUMAS.png"
+    ],
+    "highlights": ["Clásico Azul y Oro", "Escudo UNAM Bordado", "Tecnología Dri-FIT ADV"],
+    "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
+  },
+  {
+    "id": "nycfc-local-2024",
+    "team": "New York City FC",
+    "category": "Otros",
+    "subcategory": "MLS",
+    "season": "2025/26",
+    "brand": "Adidas",
+    "type": "Local",
+    "condition": "Nueva con etiquetas",
+    "size": "S,M,L,XL",
+    "description": "Jersey oficial de local para el New York City FC con un dinámico diseño de bloques geométricos tonales.",
+    "details": "Escudos bordados, este jersey presenta la tradicional base azul celeste del equipo neoyorquino, reinventada con un patrón moderno de bloques asimétricos y franjas diagonales en diferentes tonos de azul. Cuenta con el escudo del NYCFC, el logotipo de Adidas y el patrocinador principal 'Etihad Airways' resaltando en un elegante color azul marino oscuro. Incluye cuello redondo con detalles marinos y naranjas, las clásicas tres franjas en blanco sobre los hombros, y una etiqueta especial tejida en la parte inferior derecha.",
+    "images": [
+      "/Catalogo/images/NewYork.png",
+      "/Catalogo/images/Detalles/EspaldaNY.png",
+      "/Catalogo/images/Detalles/DetalleNY.png"
+    ],
+    "highlights": ["Kit '24/7' Oficial", "Diseño Geométrico Asimétrico", "Tecnología Aeroready"],
+    "observations": "Completamente nueva, etiqueta de autenticidad intacta en el cuello, sin detalles de almacenamiento."
+  }
 ]
