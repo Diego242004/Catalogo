@@ -20,13 +20,15 @@ export async function listJerseys(): Promise<Jersey[] | null> {
   const sql = getDatabase();
   if (!sql) return null;
 
-  const rows = await sql<{ data: Jersey }[]>`
+  const rows = await sql<{ data: Jersey | string }[]>`
     select data
     from jerseys
     order by lower(data->>'team'), created_at
   `;
 
-  return rows.map((row) => row.data);
+  return rows
+    .map((row) => typeof row.data === "string" ? JSON.parse(row.data) as Jersey : row.data)
+    .filter((jersey) => Boolean(jersey.id && jersey.team && jersey.season && jersey.images?.length));
 }
 
 export async function jerseyExists(id: string) {
@@ -45,7 +47,7 @@ export async function insertJersey(jersey: Jersey) {
 
   await sql`
     insert into jerseys (id, data)
-    values (${jersey.id}, ${JSON.stringify(jersey)}::jsonb)
+    values (${jersey.id}, ${sql.json({ ...jersey })})
   `;
   return true;
 }

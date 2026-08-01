@@ -85,14 +85,14 @@ export default function Home() {
       })
       .sort((a, b) => {
         if (sortBy === "name-asc") {
-          return a.team.localeCompare(b.team);
+          return (a.team ?? "").localeCompare(b.team ?? "");
         } else if (sortBy === "name-desc") {
-          return b.team.localeCompare(a.team);
+          return (b.team ?? "").localeCompare(a.team ?? "");
         } else if (sortBy === "season-desc") {
           // Compare strings like "2024/25" or "2000/01" (newest first)
-          return b.season.localeCompare(a.season);
+          return (b.season ?? "").localeCompare(a.season ?? "");
         } else if (sortBy === "season-asc") {
-          return a.season.localeCompare(b.season);
+          return (a.season ?? "").localeCompare(b.season ?? "");
         }
         return 0;
       });
