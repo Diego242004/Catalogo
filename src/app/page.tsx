@@ -4,12 +4,15 @@ import React, { useState, useMemo, useRef } from "react";
 import Header from "@/components/Header";
 import HeroBanner from "@/components/HeroBanner";
 import SearchAndFilters from "@/components/SearchAndFilters";
-import JerseyCard, { Jersey } from "@/components/JerseyCard";
+import JerseyCard from "@/components/JerseyCard";
 import JerseyModal from "@/components/JerseyModal";
+import type { Jersey } from "@/types/jersey";
+import { useCatalogTheme } from "@/hooks/useCatalogTheme";
 import jerseysData from "@/data/jerseys.json";
 import { FolderHeart, RefreshCw, Sparkles, Award } from "lucide-react";
 
 export default function Home() {
+  const { isDark, toggleTheme } = useCatalogTheme();
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("name-asc");
@@ -86,10 +89,15 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black flex flex-col justify-between">
+    <div className={`${isDark ? "dark" : ""} min-h-screen bg-white text-black flex flex-col justify-between transition-colors duration-300 dark:bg-[#090b0a] dark:text-white motion-reduce:transition-none`}>
       <div>
         {/* Navigation Header */}
-        <Header activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
+        <Header
+          activeCategory={activeCategory}
+          setActiveCategory={setActiveCategory}
+          isDark={isDark}
+          onThemeToggle={toggleTheme}
+        />
 
         {/* Hero Section */}
         <HeroBanner
@@ -122,19 +130,19 @@ export default function Home() {
               </div>
             ) : (
               // Empty State
-              <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-gray-200 py-16 px-4 text-center max-w-lg mx-auto my-10 space-y-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-50 border border-gray-150 text-gray-400">
+              <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-gray-200 py-16 px-4 text-center max-w-lg mx-auto my-10 space-y-4 dark:border-white/15">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-50 border border-gray-150 text-gray-400 dark:border-white/10 dark:bg-white/[.06]">
                   <FolderHeart className="h-6 w-6" />
                 </div>
                 <div className="space-y-1">
-                  <h3 className="text-base font-bold text-gray-900">Sin playeras encontradas</h3>
-                  <p className="text-xs text-gray-500 font-light max-w-xs">
+                  <h3 className="text-base font-bold text-gray-900 dark:text-white">Sin playeras encontradas</h3>
+                  <p className="text-xs text-gray-500 font-light max-w-xs dark:text-white/50">
                     No pudimos encontrar ninguna pieza que coincida con tus filtros de búsqueda actuales.
                   </p>
                 </div>
                 <button
                   onClick={resetFilters}
-                  className="inline-flex items-center gap-1.5 rounded-xl bg-black px-4 py-2 text-xs font-bold text-white transition hover:scale-102 active:scale-98 shadow-sm"
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-black px-4 py-2 text-xs font-bold text-white transition hover:scale-102 active:scale-98 shadow-sm dark:bg-emerald-500 dark:text-[#07110d]"
                 >
                   <RefreshCw className="h-3.5 w-3.5" />
                   Restaurar Filtros
@@ -146,26 +154,26 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-gray-100 bg-gray-50/50 py-10 mt-16">
+      <footer className="border-t border-gray-100 bg-gray-50/50 py-10 mt-16 transition-colors dark:border-white/10 dark:bg-[#0c100e]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             {/* Left Brand */}
             <div className="text-center md:text-left space-y-1">
-              <span className="text-sm font-black uppercase tracking-wider text-black">
+              <span className="text-sm font-black uppercase tracking-wider text-black dark:text-white">
                 Jersey<span className="text-emerald-600">Vault</span>
               </span>
-              <p className="text-xs text-gray-400 font-light">
-                © {new Date().getFullYear()} Diego's Collection. Diseñado para coleccionistas apasionados.
+              <p className="text-xs text-gray-400 font-light dark:text-white/40">
+                © {new Date().getFullYear()} Diego&apos;s Collection. Diseñado para coleccionistas apasionados.
               </p>
             </div>
 
             {/* Right Meta details */}
-            <div className="flex flex-wrap justify-center gap-4 text-xs font-semibold text-gray-400">
+            <div className="flex flex-wrap justify-center gap-4 text-xs font-semibold text-gray-400 dark:text-white/45">
               <span className="flex items-center gap-1">
                 <Award className="h-3.5 w-3.5 text-emerald-500" />
                 Autenticidad 100%
               </span>
-              <span className="text-gray-200">•</span>
+              <span className="text-gray-200 dark:text-white/15">•</span>
               <span className="flex items-center gap-1">
                 <Sparkles className="h-3.5 w-3.5 text-emerald-500" />
                 Galería Ultra HD
@@ -177,6 +185,7 @@ export default function Home() {
 
       {/* Product View Modal */}
       <JerseyModal
+        key={selectedJersey?.id ?? "closed"}
         jersey={selectedJersey}
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

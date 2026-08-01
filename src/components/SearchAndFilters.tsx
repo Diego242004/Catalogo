@@ -34,26 +34,26 @@ export default function SearchAndFilters({
         {/* Search input */}
         <div className="relative flex-1 max-w-md">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-            <Search className="h-5 w-5 text-gray-400" />
+            <Search className="h-5 w-5 text-gray-400 dark:text-white/35" />
           </div>
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Buscar por equipo, marca, temporada..."
-            className="w-full rounded-xl border border-gray-200 bg-white py-3 pl-10 pr-4 text-sm text-black placeholder-gray-400 transition shadow-sm hover:border-gray-300 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
+            className="w-full rounded-xl border border-gray-200 bg-white py-3 pl-10 pr-4 text-sm text-black placeholder-gray-400 shadow-sm transition hover:border-gray-300 focus:border-black focus:outline-none focus:ring-1 focus:ring-black dark:border-white/10 dark:bg-white/[0.055] dark:text-white dark:placeholder:text-white/25 dark:shadow-none dark:hover:border-white/20 dark:focus:border-emerald-400 dark:focus:ring-emerald-400"
           />
         </div>
 
         {/* Sort drop down */}
         <div className="flex items-center gap-2 self-start md:self-auto">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-50 border border-gray-200 text-gray-500">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-50 border border-gray-200 text-gray-500 dark:border-white/10 dark:bg-white/[0.055] dark:text-white/45">
             <ArrowUpDown className="h-4 w-4" />
           </div>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="rounded-xl border border-gray-200 bg-white py-2 pl-3 pr-8 text-sm font-semibold text-black transition shadow-sm hover:border-gray-300 focus:border-black focus:outline-none"
+            className="rounded-xl border border-gray-200 bg-white py-2 pl-3 pr-8 text-sm font-semibold text-black shadow-sm transition hover:border-gray-300 focus:border-black focus:outline-none dark:border-white/10 dark:bg-[#111512] dark:text-white dark:shadow-none dark:hover:border-white/20 dark:focus:border-emerald-400"
           >
             <option value="name-asc">Equipo (A - Z)</option>
             <option value="name-desc">Equipo (Z - A)</option>
@@ -65,7 +65,7 @@ export default function SearchAndFilters({
 
       {/* Category Horizontal Pills */}
       <div className="flex items-center gap-2 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-50 border border-gray-200 text-gray-500 flex-shrink-0">
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-50 border border-gray-200 text-gray-500 flex-shrink-0 dark:border-white/10 dark:bg-white/[0.055] dark:text-white/45">
           <SlidersHorizontal className="h-4 w-4" />
         </div>
         <div className="flex space-x-2">
@@ -75,8 +75,8 @@ export default function SearchAndFilters({
               onClick={() => setActiveCategory(cat.id)}
               className={`rounded-xl px-4 py-2 text-xs sm:text-sm font-semibold transition-all duration-200 whitespace-nowrap flex-shrink-0 ${
                 activeCategory === cat.id
-                  ? "bg-black text-white shadow-md scale-102"
-                  : "bg-gray-50 text-gray-600 border border-gray-200/50 hover:bg-gray-100 hover:text-black"
+                  ? "bg-black text-white shadow-md scale-102 dark:bg-emerald-400 dark:text-[#07110c]"
+                  : "bg-gray-50 text-gray-600 border border-gray-200/50 hover:bg-gray-100 hover:text-black dark:border-white/10 dark:bg-white/[0.055] dark:text-white/55 dark:hover:bg-white/10 dark:hover:text-white"
               }`}
             >
               {cat.name}
