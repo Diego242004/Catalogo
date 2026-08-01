@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, useRef } from "react";
+import React, { useEffect, useState, useMemo, useRef } from "react";
 import Header from "@/components/Header";
 import HeroBanner from "@/components/HeroBanner";
 import SearchAndFilters from "@/components/SearchAndFilters";
@@ -18,11 +18,27 @@ export default function Home() {
   const [sortBy, setSortBy] = useState("name-asc");
   const [selectedJersey, setSelectedJersey] = useState<Jersey | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [jerseys, setJerseys] = useState<Jersey[]>(jerseysData as Jersey[]);
 
   const catalogRef = useRef<HTMLDivElement>(null);
 
-  // Cast JSON data to typed Jersey array
-  const jerseys = jerseysData as Jersey[];
+  useEffect(() => {
+    let isCurrent = true;
+
+    fetch("/api/jerseys")
+      .then((response) => {
+        if (!response.ok) throw new Error("No se pudo actualizar el catálogo.");
+        return response.json() as Promise<Jersey[]>;
+      })
+      .then((data) => {
+        if (isCurrent) setJerseys(data);
+      })
+      .catch(() => undefined);
+
+    return () => {
+      isCurrent = false;
+    };
+  }, []);
 
   // Scroll to catalog section
   const handleExploreClick = () => {

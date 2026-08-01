@@ -1,9 +1,12 @@
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { del, put } from "@vercel/blob";
 import { JERSEY_VERSIONS, type Jersey } from "@/types/jersey";
 import { hasAdminSession } from "@/lib/admin-session";
+import { getDatabase, insertJersey, jerseyExists, listJerseys } from "@/lib/database";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 const DATA_PATH = path.join(process.cwd(), "src", "data", "jerseys.json");
 const IMAGES_ROOT = path.join(process.cwd(), "public", "images", "jerseys");
@@ -29,12 +32,27 @@ function safeExtension(file: File) {
   return extensions[file.type];
 }
 
+async function readLocalJerseys() {
+  return JSON.parse(await readFile(DATA_PATH, "utf8")) as Jersey[];
+}
+
+export async function GET() {
+  try {
+    const databaseJerseys = await listJerseys();
+    return Response.json(databaseJerseys ?? await readLocalJerseys());
+  } catch (error) {
+    console.error("No se pudo leer el catálogo:", error);
+    return Response.json({ error: "No se pudo cargar el catálogo." }, { status: 500 });
+  }
+}
+
 export async function POST(request: Request) {
   if (!(await hasAdminSession())) {
     return Response.json({ error: "Necesitas iniciar sesión para agregar jerseys." }, { status: 401 });
   }
 
   let createdImageDirectory: string | null = null;
+  const uploadedBlobUrls: string[] = [];
 
   try {
     let formData: FormData;
@@ -43,6 +61,7 @@ export async function POST(request: Request) {
     } catch {
       return Response.json({ error: "Envía los datos usando el formulario de administración." }, { status: 400 });
     }
+
     const values = Object.fromEntries(
       requiredFields.map((field) => [field, readText(formData, field)]),
     ) as Record<(typeof requiredFields)[number], string>;
@@ -80,23 +99,40 @@ export async function POST(request: Request) {
       }
     }
 
-    const currentJerseys = JSON.parse(await readFile(DATA_PATH, "utf8")) as Jersey[];
-    if (currentJerseys.some((jersey) => jersey.id === values.id)) {
+    const usesDatabase = Boolean(getDatabase());
+    const currentJerseys = usesDatabase ? null : await readLocalJerseys();
+    const duplicate = usesDatabase
+      ? await jerseyExists(values.id)
+      : currentJerseys!.some((jersey) => jersey.id === values.id);
+
+    if (duplicate) {
       return Response.json(
         { error: "Ya existe un jersey con ese ID. Modifica el equipo o la temporada." },
         { status: 409 },
       );
     }
 
-    await mkdir(IMAGES_ROOT, { recursive: true });
-    createdImageDirectory = path.join(IMAGES_ROOT, values.id);
-    await mkdir(createdImageDirectory, { recursive: false });
-
     const imagePaths: string[] = [];
-    for (const [index, image] of images.entries()) {
-      const filename = `${String(index + 1).padStart(2, "0")}${safeExtension(image)!}`;
-      await writeFile(path.join(createdImageDirectory, filename), Buffer.from(await image.arrayBuffer()));
-      imagePaths.push(`/images/jerseys/${values.id}/${filename}`);
+    if (usesDatabase) {
+      for (const [index, image] of images.entries()) {
+        const filename = `${String(index + 1).padStart(2, "0")}${safeExtension(image)!}`;
+        const blob = await put(`jerseys/${values.id}/${filename}`, image, {
+          access: "public",
+          addRandomSuffix: true,
+        });
+        uploadedBlobUrls.push(blob.url);
+        imagePaths.push(blob.url);
+      }
+    } else {
+      await mkdir(IMAGES_ROOT, { recursive: true });
+      createdImageDirectory = path.join(IMAGES_ROOT, values.id);
+      await mkdir(createdImageDirectory, { recursive: false });
+
+      for (const [index, image] of images.entries()) {
+        const filename = `${String(index + 1).padStart(2, "0")}${safeExtension(image)!}`;
+        await writeFile(path.join(createdImageDirectory, filename), Buffer.from(await image.arrayBuffer()));
+        imagePaths.push(`/images/jerseys/${values.id}/${filename}`);
+      }
     }
 
     const jersey: Jersey = {
@@ -116,11 +152,19 @@ export async function POST(request: Request) {
       observations: readText(formData, "observations"),
     };
 
-    await writeFile(DATA_PATH, `${JSON.stringify([...currentJerseys, jersey], null, 2)}\n`, "utf8");
+    if (usesDatabase) {
+      await insertJersey(jersey);
+    } else {
+      await writeFile(DATA_PATH, `${JSON.stringify([...currentJerseys!, jersey], null, 2)}\n`, "utf8");
+    }
+
     return Response.json({ message: "Jersey agregado correctamente.", jersey }, { status: 201 });
   } catch (error) {
     if (createdImageDirectory) {
       await rm(createdImageDirectory, { recursive: true, force: true }).catch(() => undefined);
+    }
+    if (uploadedBlobUrls.length > 0) {
+      await del(uploadedBlobUrls).catch(() => undefined);
     }
     console.error("No se pudo guardar el jersey:", error);
     return Response.json(
