@@ -51,3 +51,28 @@ export async function insertJersey(jersey: Jersey) {
   `;
   return true;
 }
+
+export async function updateJersey(id: string, jersey: Jersey) {
+  const sql = getDatabase();
+  if (!sql) return false;
+
+  const rows = await sql<{ id: string }[]>`
+    update jerseys
+    set data = ${sql.json({ ...jersey })}
+    where id = ${id}
+    returning id
+  `;
+  return rows.length > 0;
+}
+
+export async function deleteJersey(id: string) {
+  const sql = getDatabase();
+  if (!sql) return false;
+
+  const rows = await sql<{ id: string }[]>`
+    delete from jerseys
+    where id = ${id}
+    returning id
+  `;
+  return rows.length > 0;
+}

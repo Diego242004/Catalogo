@@ -150,6 +150,7 @@ export async function POST(request: Request) {
       images: imagePaths,
       highlights: readText(formData, "highlights").split(",").map((item) => item.trim()).filter(Boolean),
       observations: readText(formData, "observations"),
+      soldOut: readText(formData, "soldOut") === "true",
     };
 
     if (usesDatabase) {

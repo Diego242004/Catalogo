@@ -3,291 +3,165 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FormEvent, useEffect, useMemo, useState } from "react";
-import {
-  ArrowLeft,
-  CheckCircle2,
-  ImagePlus,
-  LoaderCircle,
-  LogOut,
-  Save,
-  Shirt,
-  X,
-} from "lucide-react";
-import { JERSEY_VERSIONS, type JerseyVersion } from "@/types/jersey";
+import { FormEvent, useEffect, useState } from "react";
+import { ArrowLeft, CheckCircle2, LoaderCircle, LogOut, PackageCheck, Pencil, Plus, Save, Shirt, Trash2, Upload, X } from "lucide-react";
+import { JERSEY_VERSIONS, type Jersey, type JerseyVersion } from "@/types/jersey";
 
+type Tab = "add" | "update" | "delete";
+type Notice = { kind: "success" | "error"; text: string } | null;
 const categories = ["Selecciones Nacionales", "Fútbol MX", "Europa", "Otros"];
 const jerseyTypes = ["Local", "Visitante", "Tercera Equipación", "Entrenamiento", "Edición Especial"];
 const sizes = ["S", "M", "L", "XL", "XXL"];
-
-const inputClass =
-  "w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-gray-900 outline-none transition placeholder:text-gray-300 focus:border-emerald-500 focus:ring-3 focus:ring-emerald-100";
+const inputClass = "min-h-11 w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-gray-900 outline-none transition placeholder:text-gray-300 focus:border-emerald-500 focus:ring-3 focus:ring-emerald-100";
 const labelClass = "mb-1.5 block text-xs font-bold uppercase tracking-wider text-gray-500";
 
 function slugify(value: string) {
-  return value
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
+  return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
-export default function AddJerseyPage() {
+export default function AdminJerseysPage() {
   const router = useRouter();
-  const [team, setTeam] = useState("");
-  const [season, setSeason] = useState("");
-  const [type, setType] = useState("Local");
-  const [version, setVersion] = useState<JerseyVersion>("Versión Fan");
-  const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
-  const [files, setFiles] = useState<File[]>([]);
-  const [isSaving, setIsSaving] = useState(false);
-  const [isLoggingOut, setIsLoggingOut] = useState(false);
-  const [message, setMessage] = useState<{ kind: "success" | "error"; text: string } | null>(null);
+  const [tab, setTab] = useState<Tab>("add");
+  const [jerseys, setJerseys] = useState<Jersey[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedId, setSelectedId] = useState("");
+  const [notice, setNotice] = useState<Notice>(null);
 
-  const jerseyId = team.trim() && season.trim() ? slugify(`${team}-${type}-${season}`) : "";
-  const previewUrls = useMemo(() => files.map((file) => URL.createObjectURL(file)), [files]);
-
-  useEffect(() => () => previewUrls.forEach((url) => URL.revokeObjectURL(url)), [previewUrls]);
-
-  const toggleSize = (size: string) => {
-    setSelectedSizes((current) =>
-      current.includes(size) ? current.filter((item) => item !== size) : [...current, size],
-    );
-  };
-
-  const handleImages = (selectedFiles: FileList | null) => {
-    const nextFiles = Array.from(selectedFiles ?? []).slice(0, 5);
-    setFiles(nextFiles);
-    setMessage(null);
-  };
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setMessage(null);
-
-    if (selectedSizes.length === 0) {
-      setMessage({ kind: "error", text: "Selecciona al menos una talla." });
-      return;
-    }
-    if (files.length === 0) {
-      setMessage({ kind: "error", text: "Agrega al menos una imagen." });
-      return;
-    }
-
-    setIsSaving(true);
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-
+  const loadJerseys = async () => {
+    setLoading(true);
     try {
-      const response = await fetch("/api/jerseys", { method: "POST", body: formData });
-      const result = (await response.json()) as { error?: string; message?: string };
-      if (response.status === 401) {
-        router.replace("/admin/login");
-        router.refresh();
-        return;
-      }
-      if (!response.ok) throw new Error(result.error ?? "No se pudo guardar el jersey.");
-
-      setMessage({ kind: "success", text: result.message ?? "Jersey agregado correctamente." });
-      form.reset();
-      setTeam("");
-      setSeason("");
-      setType("Local");
-      setVersion("Versión Fan");
-      setSelectedSizes([]);
-      setFiles([]);
-    } catch (error) {
-      setMessage({ kind: "error", text: error instanceof Error ? error.message : "Ocurrió un error." });
-    } finally {
-      setIsSaving(false);
-    }
+      const response = await fetch("/api/jerseys", { cache: "no-store" });
+      if (!response.ok) throw new Error();
+      const data = await response.json() as Jersey[];
+      setJerseys(data);
+      setSelectedId((current) => data.some((item) => item.id === current) ? current : data[0]?.id ?? "");
+    } catch { setNotice({ kind: "error", text: "No se pudo cargar el catálogo." }); }
+    finally { setLoading(false); }
   };
 
-  const handleLogout = async () => {
-    setIsLoggingOut(true);
+  useEffect(() => {
+    let active = true;
+    fetch("/api/jerseys", { cache: "no-store" })
+      .then((response) => {
+        if (!response.ok) throw new Error();
+        return response.json() as Promise<Jersey[]>;
+      })
+      .then((data) => {
+        if (!active) return;
+        setJerseys(data);
+        setSelectedId(data[0]?.id ?? "");
+      })
+      .catch(() => { if (active) setNotice({ kind: "error", text: "No se pudo cargar el catálogo." }); })
+      .finally(() => { if (active) setLoading(false); });
+    return () => { active = false; };
+  }, []);
+  const selected = jerseys.find((jersey) => jersey.id === selectedId);
+
+  const logout = async () => {
     await fetch("/api/admin/logout", { method: "POST" });
-    router.replace("/");
-    router.refresh();
+    router.replace("/"); router.refresh();
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 text-gray-900">
+    <main className="min-h-dvh bg-gray-50 text-gray-900">
       <header className="border-b border-gray-200 bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-          <Link href="/" className="inline-flex items-center gap-2 text-sm font-bold text-gray-600 hover:text-black">
-            <ArrowLeft className="h-4 w-4" /> Volver al catálogo
-          </Link>
+          <Link href="/" className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-gray-600 hover:text-black"><ArrowLeft className="h-4 w-4" /> Volver al catálogo</Link>
           <div className="flex items-center gap-3">
-            <div className="hidden items-center gap-2 text-sm font-black uppercase tracking-tight sm:flex">
-              <Shirt className="h-5 w-5 text-emerald-600" /> JerseyVault Admin
-            </div>
-            <button
-              type="button"
-              onClick={handleLogout}
-              disabled={isLoggingOut}
-              className="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-xl border border-gray-200 px-3 text-xs font-bold text-gray-600 transition hover:border-gray-400 hover:text-black disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              {isLoggingOut ? <LoaderCircle className="h-4 w-4 animate-spin" /> : <LogOut className="h-4 w-4" />}
-              Cerrar sesión
-            </button>
+            <span className="hidden items-center gap-2 text-sm font-black uppercase sm:flex"><Shirt className="h-5 w-5 text-emerald-600" /> JerseyVault Admin</span>
+            <button onClick={logout} className="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-xl border border-gray-200 px-3 text-xs font-bold text-gray-600 hover:border-gray-400 hover:text-black"><LogOut className="h-4 w-4" /> Cerrar sesión</button>
           </div>
         </div>
       </header>
 
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="mb-8">
+        <div className="mb-7">
           <span className="text-xs font-black uppercase tracking-[0.2em] text-emerald-600">Administración local</span>
-          <h1 className="mt-2 text-3xl font-black tracking-tight sm:text-4xl">Agregar un jersey</h1>
-          <p className="mt-2 max-w-2xl text-sm text-gray-500">
-            Completa la ficha, revisa la vista previa y guarda la nueva pieza directamente en el catálogo.
-          </p>
+          <h1 className="mt-2 text-3xl font-black tracking-tight sm:text-4xl">Gestionar jerseys</h1>
+          <p className="mt-2 max-w-2xl text-sm text-gray-500">Agrega piezas, actualiza su información y controla cuáles están disponibles.</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_380px]">
-          <div className="space-y-6">
-            <section className="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7">
-              <h2 className="mb-5 text-lg font-black">Información principal</h2>
-              <div className="grid gap-5 sm:grid-cols-2">
-                <Field label="Equipo o selección">
-                  <input name="team" value={team} onChange={(e) => setTeam(e.target.value)} className={inputClass} placeholder="Ej. Real Madrid" required />
-                </Field>
-                <Field label="Marca">
-                  <input name="brand" className={inputClass} placeholder="Ej. Adidas" required />
-                </Field>
-                <Field label="Categoría">
-                  <select name="category" className={inputClass} required>
-                    {categories.map((item) => <option key={item}>{item}</option>)}
-                  </select>
-                </Field>
-                <Field label="Subcategoría">
-                  <input name="subcategory" className={inputClass} placeholder="Ej. La Liga, UEFA, Liga MX" required />
-                </Field>
-                <Field label="Temporada">
-                  <input name="season" value={season} onChange={(e) => setSeason(e.target.value)} className={inputClass} placeholder="Ej. 2025/26" required />
-                </Field>
-                <Field label="Tipo">
-                  <select name="type" value={type} onChange={(e) => setType(e.target.value)} className={inputClass}>
-                    {jerseyTypes.map((item) => <option key={item}>{item}</option>)}
-                  </select>
-                </Field>
-                <Field label="Versión">
-                  <select name="version" value={version} onChange={(e) => setVersion(e.target.value as JerseyVersion)} className={inputClass}>
-                    {JERSEY_VERSIONS.map((item) => <option key={item}>{item}</option>)}
-                  </select>
-                </Field>
-                <Field label="ID generado automáticamente">
-                  <input name="id" value={jerseyId} readOnly className={`${inputClass} bg-gray-50 font-mono text-xs text-gray-500`} placeholder="Se generará al completar los datos" />
-                </Field>
-              </div>
+        <nav aria-label="Secciones de administración" className="mb-8 grid rounded-2xl border border-gray-200 bg-white p-1.5 shadow-sm sm:inline-grid sm:grid-cols-3">
+          <TabButton active={tab === "add"} onClick={() => { setTab("add"); setNotice(null); }} icon={<Plus />} label="Agregar" />
+          <TabButton active={tab === "update"} onClick={() => { setTab("update"); setNotice(null); }} icon={<Pencil />} label="Actualizar" />
+          <TabButton active={tab === "delete"} onClick={() => { setTab("delete"); setNotice(null); }} icon={<Trash2 />} label="Eliminar" danger />
+        </nav>
 
-              <div className="mt-5">
-                <span className={labelClass}>Tallas disponibles</span>
-                <input type="hidden" name="size" value={selectedSizes.join(",")} />
-                <div className="flex flex-wrap gap-2">
-                  {sizes.map((size) => {
-                    const active = selectedSizes.includes(size);
-                    return (
-                      <button key={size} type="button" onClick={() => toggleSize(size)} aria-pressed={active}
-                        className={`h-10 min-w-12 rounded-xl border px-3 text-sm font-black transition ${active ? "border-black bg-black text-white" : "border-gray-200 bg-white text-gray-500 hover:border-gray-400"}`}>
-                        {size}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            </section>
+        {notice && <div aria-live="polite" className={`mb-6 flex items-center gap-2 rounded-2xl border p-4 text-sm font-bold ${notice.kind === "success" ? "border-emerald-200 bg-emerald-50 text-emerald-800" : "border-red-200 bg-red-50 text-red-800"}`}>{notice.kind === "success" ? <CheckCircle2 className="h-5 w-5" /> : <X className="h-5 w-5" />}{notice.text}</div>}
 
-            <section className="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7">
-              <h2 className="mb-5 text-lg font-black">Descripción</h2>
-              <div className="space-y-5">
-                <Field label="Descripción corta">
-                  <textarea name="description" className={`${inputClass} min-h-24 resize-y`} maxLength={220} placeholder="Texto breve que aparecerá en la card." required />
-                </Field>
-                <Field label="Historia y detalles">
-                  <textarea name="details" className={`${inputClass} min-h-36 resize-y`} placeholder="Describe el diseño, materiales, contexto o historia de la camiseta." required />
-                </Field>
-                <Field label="Destacados (separados por comas)">
-                  <input name="highlights" className={inputClass} placeholder="Ej. Edición retro, Escudo bordado, Dri-FIT" />
-                </Field>
-                <Field label="Observaciones">
-                  <textarea name="observations" className={`${inputClass} min-h-24 resize-y`} placeholder="Información adicional opcional." />
-                </Field>
-              </div>
-            </section>
-
-            <section className="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7">
-              <div className="mb-5 flex items-center justify-between gap-4">
-                <div><h2 className="text-lg font-black">Imágenes</h2><p className="text-xs text-gray-400">Entre 1 y 5 archivos JPG, PNG o WebP. Máximo 8 MB cada uno.</p></div>
-                <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-bold text-gray-500">{files.length}/5</span>
-              </div>
-              <label className="flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-gray-200 bg-gray-50 px-6 py-10 text-center transition hover:border-emerald-400 hover:bg-emerald-50/40">
-                <ImagePlus className="mb-3 h-8 w-8 text-emerald-600" />
-                <span className="text-sm font-black">Seleccionar imágenes</span>
-                <span className="mt-1 text-xs text-gray-400">La primera imagen será la portada</span>
-                <input name="images" type="file" accept="image/jpeg,image/png,image/webp" multiple className="sr-only" onChange={(e) => handleImages(e.target.files)} />
-              </label>
-              {files.length > 0 && (
-                <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-5">
-                  {files.map((file, index) => (
-                    <div key={`${file.name}-${file.lastModified}`} className="group relative aspect-square overflow-hidden rounded-xl border border-gray-200 bg-gray-50">
-                      <Image src={previewUrls[index]} alt={`Vista previa ${index + 1}`} fill unoptimized className="object-contain p-2" />
-                      <button type="button" onClick={() => setFiles((current) => current.filter((_, itemIndex) => itemIndex !== index))}
-                        className="absolute right-1.5 top-1.5 rounded-full bg-black/70 p-1 text-white" aria-label={`Quitar ${file.name}`}>
-                        <X className="h-3.5 w-3.5" />
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </section>
-
-            {message && (
-              <div role="status" className={`flex items-center gap-2 rounded-2xl border p-4 text-sm font-bold ${message.kind === "success" ? "border-emerald-200 bg-emerald-50 text-emerald-800" : "border-red-200 bg-red-50 text-red-800"}`}>
-                {message.kind === "success" ? <CheckCircle2 className="h-5 w-5" /> : <X className="h-5 w-5" />}{message.text}
-              </div>
-            )}
-
-            <button type="submit" disabled={isSaving} className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-black px-6 py-4 text-sm font-black text-white shadow-lg transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-60">
-              {isSaving ? <LoaderCircle className="h-5 w-5 animate-spin" /> : <Save className="h-5 w-5" />}
-              {isSaving ? "Guardando..." : "Guardar jersey en el catálogo"}
-            </button>
-          </div>
-
-          <aside className="sticky top-6 rounded-3xl border border-gray-200 bg-white p-5 shadow-sm">
-            <div className="mb-4 flex items-center justify-between"><h2 className="text-sm font-black uppercase tracking-wider">Vista previa</h2><span className="text-[10px] font-bold uppercase text-gray-400">Card</span></div>
-            <div className="overflow-hidden rounded-2xl border border-gray-200">
-              <div className="relative flex aspect-square items-center justify-center bg-gray-50 p-6">
-                {previewUrls[0] ? <Image src={previewUrls[0]} alt="Portada del jersey" fill unoptimized className="object-contain p-8" /> : <Shirt className="h-20 w-20 text-gray-200" />}
-                <span className="absolute left-3 top-3 rounded-md bg-black px-2 py-1 text-[9px] font-black uppercase text-white">Marca</span>
-                <VersionBadge version={version} />
-              </div>
-              <div className="space-y-2 p-4">
-                <div className="flex justify-between text-[10px] font-bold uppercase tracking-wider text-gray-400"><span>Subcategoría</span><span className="text-emerald-600">{season || "Temporada"}</span></div>
-                <h3 className="text-lg font-black">{team || "Nombre del equipo"}</h3>
-                <p className="text-xs font-bold text-gray-500">{type} · Talla {selectedSizes.join(",") || "—"}</p>
-                <div className="mt-4 rounded-xl bg-gray-50 py-2.5 text-center text-xs font-black">Ver Detalles</div>
-              </div>
-            </div>
-            <div className="mt-4 rounded-xl bg-amber-50 p-3 text-xs leading-relaxed text-amber-900">
-              Acceso protegido. Tu sesión se cerrará automáticamente después de 8 horas.
-            </div>
-          </aside>
-        </form>
+        {tab === "add" && <JerseyForm mode="add" onDone={(message) => { setNotice({ kind: "success", text: message }); void loadJerseys(); }} onError={(text) => setNotice({ kind: "error", text })} />}
+        {tab === "update" && <CatalogWorkspace loading={loading} jerseys={jerseys} selectedId={selectedId} onSelect={setSelectedId}>{selected && <JerseyForm key={selected.id} mode="update" jersey={selected} onDone={(message) => { setNotice({ kind: "success", text: message }); void loadJerseys(); }} onError={(text) => setNotice({ kind: "error", text })} />}</CatalogWorkspace>}
+        {tab === "delete" && <CatalogWorkspace loading={loading} jerseys={jerseys} selectedId={selectedId} onSelect={setSelectedId}>{selected && <DeletePanel jersey={selected} onDone={(message) => { setNotice({ kind: "success", text: message }); void loadJerseys(); }} onError={(text) => setNotice({ kind: "error", text })} />}</CatalogWorkspace>}
       </div>
     </main>
   );
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return <label><span className={labelClass}>{label}</span>{children}</label>;
+function TabButton({ active, onClick, icon, label, danger = false }: { active: boolean; onClick: () => void; icon: React.ReactNode; label: string; danger?: boolean }) {
+  return <button type="button" onClick={onClick} aria-current={active ? "page" : undefined} className={`inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl px-5 text-sm font-black transition [&_svg]:h-4 [&_svg]:w-4 ${active ? danger ? "bg-red-600 text-white shadow-sm" : "bg-black text-white shadow-sm" : danger ? "text-red-600 hover:bg-red-50" : "text-gray-500 hover:bg-gray-50 hover:text-black"}`}>{icon}{label}</button>;
 }
 
-function VersionBadge({ version }: { version: JerseyVersion }) {
-  const colors: Record<JerseyVersion, string> = {
-    "Versión Fan": "border-blue-200 bg-blue-50 text-blue-700",
-    "Versión Jugador": "border-red-200 bg-red-50 text-red-700",
-    "Versión Equipo": "border-yellow-300 bg-yellow-50 text-yellow-800",
-  };
-  return <span className={`absolute right-3 top-3 rounded-md border px-2 py-1 text-[9px] font-bold ${colors[version]}`}>{version}</span>;
+function CatalogWorkspace({ loading, jerseys, selectedId, onSelect, children }: { loading: boolean; jerseys: Jersey[]; selectedId: string; onSelect: (id: string) => void; children: React.ReactNode }) {
+  if (loading) return <div className="flex justify-center py-20"><LoaderCircle className="h-7 w-7 animate-spin text-emerald-600" /></div>;
+  if (!jerseys.length) return <div className="rounded-3xl border border-dashed border-gray-300 bg-white p-12 text-center"><Shirt className="mx-auto mb-3 h-9 w-9 text-gray-300" /><h2 className="font-black">Aún no hay jerseys</h2><p className="mt-1 text-sm text-gray-500">Usa la pestaña Agregar para crear el primero.</p></div>;
+  return <div className="grid items-start gap-6 lg:grid-cols-[280px_minmax(0,1fr)]"><aside className="min-w-0 rounded-3xl border border-gray-200 bg-white p-3 shadow-sm lg:sticky lg:top-6"><p className="px-3 py-2 text-xs font-black uppercase tracking-wider text-gray-400">Selecciona un jersey</p><div className="flex gap-2 overflow-x-auto pb-1 lg:block lg:space-y-1 lg:overflow-visible lg:pb-0">{jerseys.map((item) => <button type="button" key={item.id} onClick={() => onSelect(item.id)} className={`flex min-h-14 w-56 shrink-0 cursor-pointer items-center gap-3 rounded-2xl p-2 text-left transition lg:w-full ${selectedId === item.id ? "bg-black text-white" : "hover:bg-gray-50"}`}><span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-xl bg-gray-100"><Image src={item.images[0]} alt="" fill sizes="44px" className="object-contain p-1" /></span><span className="min-w-0"><span className="block truncate text-sm font-black">{item.team}</span><span className={`block truncate text-xs ${selectedId === item.id ? "text-white/60" : "text-gray-400"}`}>{item.season} · {item.type}</span></span>{item.soldOut && <span className="ml-auto h-2 w-2 shrink-0 rounded-full bg-amber-400" title="Agotado" />}</button>)}</div></aside><div>{children}</div></div>;
 }
+
+function JerseyForm({ mode, jersey, onDone, onError }: { mode: "add" | "update"; jersey?: Jersey; onDone: (message: string) => void; onError: (message: string) => void }) {
+  const [team, setTeam] = useState(jersey?.team ?? "");
+  const [season, setSeason] = useState(jersey?.season ?? "");
+  const [type, setType] = useState(jersey?.type ?? "Local");
+  const [version, setVersion] = useState<JerseyVersion>(jersey?.version ?? JERSEY_VERSIONS[0]);
+  const [selectedSizes, setSelectedSizes] = useState((jersey?.size ?? "").split(",").filter(Boolean));
+  const [soldOut, setSoldOut] = useState(jersey?.soldOut ?? false);
+  const [files, setFiles] = useState<File[]>([]);
+  const [saving, setSaving] = useState(false);
+  const id = jersey?.id ?? (team.trim() && season.trim() ? slugify(`${team}-${type}-${season}`) : "");
+
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!selectedSizes.length) return onError("Selecciona al menos una talla.");
+    if (mode === "add" && !files.length) return onError("Agrega al menos una imagen.");
+    setSaving(true);
+    try {
+      const form = new FormData(event.currentTarget);
+      const response = await fetch(mode === "add" ? "/api/jerseys" : `/api/jerseys/${jersey!.id}`, { method: mode === "add" ? "POST" : "PATCH", body: form });
+      const result = await response.json() as { error?: string; message?: string };
+      if (!response.ok) throw new Error(result.error ?? "No se pudo guardar.");
+      onDone(result.message ?? "Cambios guardados.");
+      if (mode === "add") { (event.currentTarget as HTMLFormElement).reset(); setTeam(""); setSeason(""); setType("Local"); setSelectedSizes([]); setFiles([]); }
+    } catch (error) { onError(error instanceof Error ? error.message : "Ocurrió un error."); }
+    finally { setSaving(false); }
+  };
+
+  return <form onSubmit={submit} className="grid items-start gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
+    <div className="space-y-6">
+      <section className="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7"><div className="mb-5"><h2 className="text-lg font-black">{mode === "add" ? "Información principal" : `Editar ${jersey!.team}`}</h2>{mode === "update" && <p className="mt-1 text-xs text-gray-400">El ID permanece fijo para conservar sus imágenes y enlaces.</p>}</div><div className="grid gap-5 sm:grid-cols-2">
+        <Field label="Equipo o selección"><input name="team" value={team} onChange={(e) => setTeam(e.target.value)} className={inputClass} required /></Field>
+        <Field label="Marca"><input name="brand" defaultValue={jersey?.brand} className={inputClass} required /></Field>
+        <Field label="Categoría"><select name="category" defaultValue={jersey?.category} className={inputClass}>{categories.map((item) => <option key={item}>{item}</option>)}</select></Field>
+        <Field label="Subcategoría"><input name="subcategory" defaultValue={jersey?.subcategory} className={inputClass} required /></Field>
+        <Field label="Temporada"><input name="season" value={season} onChange={(e) => setSeason(e.target.value)} className={inputClass} placeholder="2025/26" required /></Field>
+        <Field label="Tipo"><select name="type" value={type} onChange={(e) => setType(e.target.value)} className={inputClass}>{jerseyTypes.map((item) => <option key={item}>{item}</option>)}</select></Field>
+        <Field label="Versión"><select name="version" value={version} onChange={(e) => setVersion(e.target.value as JerseyVersion)} className={inputClass}>{JERSEY_VERSIONS.map((item) => <option key={item}>{item}</option>)}</select></Field>
+        <Field label="ID"><input name="id" value={id} readOnly className={`${inputClass} bg-gray-50 font-mono text-xs text-gray-500`} /></Field>
+      </div><div className="mt-5"><span className={labelClass}>Tallas disponibles</span><input type="hidden" name="size" value={selectedSizes.join(",")} /><div className="flex flex-wrap gap-2">{sizes.map((size) => <button key={size} type="button" aria-pressed={selectedSizes.includes(size)} onClick={() => setSelectedSizes((current) => current.includes(size) ? current.filter((item) => item !== size) : [...current, size])} className={`h-11 min-w-12 cursor-pointer rounded-xl border px-3 text-sm font-black ${selectedSizes.includes(size) ? "border-black bg-black text-white" : "border-gray-200 text-gray-500 hover:border-gray-400"}`}>{size}</button>)}</div></div></section>
+
+      <section className="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7"><h2 className="mb-5 text-lg font-black">Descripción</h2><div className="space-y-5"><Field label="Descripción corta"><textarea name="description" defaultValue={jersey?.description} className={`${inputClass} min-h-24 resize-y`} maxLength={220} required /></Field><Field label="Historia y detalles"><textarea name="details" defaultValue={jersey?.details} className={`${inputClass} min-h-36 resize-y`} required /></Field><Field label="Destacados (separados por comas)"><input name="highlights" defaultValue={jersey?.highlights.join(", ")} className={inputClass} /></Field><Field label="Observaciones"><textarea name="observations" defaultValue={jersey?.observations} className={`${inputClass} min-h-24 resize-y`} /></Field></div></section>
+
+      <section className="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7"><div className="flex items-start justify-between gap-4"><div><h2 className="text-lg font-black">Imágenes</h2><p className="mt-1 text-xs text-gray-400">{mode === "update" ? "Déjalo vacío para conservar las actuales; selecciona nuevas para reemplazarlas." : "Entre 1 y 5 imágenes JPG, PNG o WebP."}</p></div><span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-bold text-gray-500">{files.length}/5</span></div><label className="mt-5 flex min-h-32 cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-gray-200 bg-gray-50 p-5 text-center hover:border-emerald-400 hover:bg-emerald-50"><Upload className="mb-2 h-6 w-6 text-emerald-600" /><span className="text-sm font-black">Seleccionar imágenes</span><input name="images" type="file" multiple accept="image/jpeg,image/png,image/webp" className="sr-only" onChange={(e) => setFiles(Array.from(e.target.files ?? []).slice(0, 5))} /></label></section>
+
+      <button disabled={saving} className="inline-flex min-h-14 w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-black px-6 text-sm font-black text-white shadow-lg transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50">{saving ? <LoaderCircle className="h-5 w-5 animate-spin" /> : <Save className="h-5 w-5" />}{saving ? "Guardando…" : mode === "add" ? "Guardar jersey en el catálogo" : "Guardar todos los cambios"}</button>
+    </div>
+
+    <aside className="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm xl:sticky xl:top-6"><h2 className="text-sm font-black uppercase tracking-wider">Disponibilidad</h2><input type="hidden" name="soldOut" value={String(soldOut)} /><button type="button" role="switch" aria-checked={soldOut} onClick={() => setSoldOut(!soldOut)} className={`mt-4 flex min-h-16 w-full cursor-pointer items-center gap-3 rounded-2xl border p-3 text-left transition ${soldOut ? "border-amber-300 bg-amber-50" : "border-emerald-200 bg-emerald-50"}`}><span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${soldOut ? "bg-amber-500 text-white" : "bg-emerald-600 text-white"}`}><PackageCheck className="h-5 w-5" /></span><span><span className="block text-sm font-black">{soldOut ? "Agotado" : "Disponible"}</span><span className="block text-xs text-gray-500">{soldOut ? "La card seguirá visible con etiqueta." : "Se muestra normalmente en el catálogo."}</span></span></button>{jersey?.images[0] && <div className="relative mt-5 aspect-square overflow-hidden rounded-2xl bg-gray-50"><Image src={jersey.images[0]} alt={jersey.team} fill sizes="280px" className="object-contain p-5" />{soldOut && <span className="absolute left-0 top-4 bg-black px-3 py-2 text-[10px] font-black uppercase tracking-wider text-white">Agotado</span>}</div>}</aside>
+  </form>;
+}
+
+function DeletePanel({ jersey, onDone, onError }: { jersey: Jersey; onDone: (message: string) => void; onError: (message: string) => void }) {
+  const [confirmation, setConfirmation] = useState(""); const [deleting, setDeleting] = useState(false);
+  const remove = async () => { setDeleting(true); try { const response = await fetch(`/api/jerseys/${jersey.id}`, { method: "DELETE" }); const result = await response.json() as { error?: string; message?: string }; if (!response.ok) throw new Error(result.error); onDone(result.message ?? "Jersey eliminado."); } catch (error) { onError(error instanceof Error ? error.message : "No se pudo eliminar."); } finally { setDeleting(false); } };
+  return <section className="rounded-3xl border border-red-200 bg-white p-5 shadow-sm sm:p-7"><div className="flex flex-col gap-6 sm:flex-row"><div className="relative aspect-square w-full shrink-0 overflow-hidden rounded-2xl bg-gray-50 sm:w-48"><Image src={jersey.images[0]} alt={jersey.team} fill sizes="192px" className="object-contain p-4" /></div><div className="flex-1"><span className="text-xs font-black uppercase tracking-wider text-red-600">Zona de peligro</span><h2 className="mt-2 text-2xl font-black">Eliminar {jersey.team}</h2><p className="mt-2 text-sm leading-relaxed text-gray-500">Esta acción borra la ficha y sus imágenes de forma definitiva. Si sólo se vendió temporalmente, usa <strong>Actualizar → Agotado</strong>.</p><label className="mt-5 block"><span className={labelClass}>Escribe ELIMINAR para confirmar</span><input value={confirmation} onChange={(e) => setConfirmation(e.target.value)} className={inputClass} autoComplete="off" /></label><button type="button" disabled={confirmation !== "ELIMINAR" || deleting} onClick={remove} className="mt-4 inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-red-600 px-5 text-sm font-black text-white hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto">{deleting ? <LoaderCircle className="h-4 w-4 animate-spin" /> : <Trash2 className="h-4 w-4" />}{deleting ? "Eliminando…" : "Eliminar definitivamente"}</button></div></div></section>;
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) { return <label><span className={labelClass}>{label}</span>{children}</label>; }

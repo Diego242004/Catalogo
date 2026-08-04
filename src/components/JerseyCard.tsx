@@ -49,6 +49,11 @@ export default function JerseyCard({ jersey, onViewDetails }: JerseyCardProps) {
     >
       {/* Product Image and Carousel Controls */}
       <div className="relative aspect-square w-full overflow-hidden bg-gray-50 p-6 flex items-center justify-center dark:bg-[#151a17]">
+        {jersey.soldOut && (
+          <span className="absolute left-0 top-4 z-20 bg-black px-3 py-2 text-[11px] font-black uppercase tracking-[0.12em] text-white shadow-md dark:bg-white dark:text-black">
+            Agotado
+          </span>
+        )}
         {/* Main image */}
         <div className="relative h-full w-full transition duration-500 group-hover:scale-105">
           <Image

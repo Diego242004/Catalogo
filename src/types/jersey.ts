@@ -21,4 +21,5 @@ export interface Jersey {
   images: string[];
   highlights: string[];
   observations: string;
+  soldOut?: boolean;
 }

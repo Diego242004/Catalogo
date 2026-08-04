@@ -152,7 +152,7 @@
     "brand": "Adidas",
     "type": "Local",
     "version": "Versión Fan",
-    "size": "XL",
+    "size": "XL,L,M,S",
     "description": "Camiseta del gigante alemán en un vibrante color rojo con tres tonos combinados y detalles oscuros.",
     "details": "El jersey local del FC Bayern para la temporada 24/25 combina por primera vez tres tonos diferentes de rojo en un diseño dinámico de franjas y ondas. Los detalles de las tres franjas de Adidas y los patrocinadores resaltan en un tono vino oscuro que aporta elegancia.",
     "images": [
@@ -165,7 +165,8 @@
       "Edición Coleccionista",
       "AeroReady"
     ],
-    "observations": "Pieza en empaque original sellado, talla XL ideal para exhibición extendida en marco."
+    "observations": "Pieza en empaque original sellado, talla XL ideal para exhibición extendida en marco.",
+    "soldOut": false
   },
   {
     "id": "boca-juniors-2000",
