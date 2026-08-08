@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { ArrowLeft, CheckCircle2, LoaderCircle, LogOut, PackageCheck, Pencil, Plus, Save, Shirt, Trash2, Upload, X } from "lucide-react";
 import { JERSEY_VERSIONS, type Jersey, type JerseyVersion } from "@/types/jersey";
 
@@ -117,19 +117,25 @@ function JerseyForm({ mode, jersey, onDone, onError }: { mode: "add" | "update";
   const [files, setFiles] = useState<File[]>([]);
   const [saving, setSaving] = useState(false);
   const id = jersey?.id ?? (team.trim() && season.trim() ? slugify(`${team}-${type}-${season}`) : "");
+  const previewUrls = useMemo(() => files.map((file) => URL.createObjectURL(file)), [files]);
+
+  useEffect(() => () => previewUrls.forEach((url) => URL.revokeObjectURL(url)), [previewUrls]);
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const formElement = event.currentTarget;
     if (!selectedSizes.length) return onError("Selecciona al menos una talla.");
     if (mode === "add" && !files.length) return onError("Agrega al menos una imagen.");
     setSaving(true);
     try {
-      const form = new FormData(event.currentTarget);
+      const form = new FormData(formElement);
+      form.delete("images");
+      files.forEach((file) => form.append("images", file));
       const response = await fetch(mode === "add" ? "/api/jerseys" : `/api/jerseys/${jersey!.id}`, { method: mode === "add" ? "POST" : "PATCH", body: form });
       const result = await response.json() as { error?: string; message?: string };
       if (!response.ok) throw new Error(result.error ?? "No se pudo guardar.");
       onDone(result.message ?? "Cambios guardados.");
-      if (mode === "add") { (event.currentTarget as HTMLFormElement).reset(); setTeam(""); setSeason(""); setType("Local"); setSelectedSizes([]); setFiles([]); }
+      if (mode === "add") { formElement.reset(); setTeam(""); setSeason(""); setType("Local"); setSelectedSizes([]); setFiles([]); }
     } catch (error) { onError(error instanceof Error ? error.message : "Ocurrió un error."); }
     finally { setSaving(false); }
   };
@@ -149,7 +155,7 @@ function JerseyForm({ mode, jersey, onDone, onError }: { mode: "add" | "update";
 
       <section className="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7"><h2 className="mb-5 text-lg font-black">Descripción</h2><div className="space-y-5"><Field label="Descripción corta"><textarea name="description" defaultValue={jersey?.description} className={`${inputClass} min-h-24 resize-y`} maxLength={220} required /></Field><Field label="Historia y detalles"><textarea name="details" defaultValue={jersey?.details} className={`${inputClass} min-h-36 resize-y`} required /></Field><Field label="Destacados (separados por comas)"><input name="highlights" defaultValue={jersey?.highlights.join(", ")} className={inputClass} /></Field><Field label="Observaciones"><textarea name="observations" defaultValue={jersey?.observations} className={`${inputClass} min-h-24 resize-y`} /></Field></div></section>
 
-      <section className="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7"><div className="flex items-start justify-between gap-4"><div><h2 className="text-lg font-black">Imágenes</h2><p className="mt-1 text-xs text-gray-400">{mode === "update" ? "Déjalo vacío para conservar las actuales; selecciona nuevas para reemplazarlas." : "Entre 1 y 5 imágenes JPG, PNG o WebP."}</p></div><span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-bold text-gray-500">{files.length}/5</span></div><label className="mt-5 flex min-h-32 cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-gray-200 bg-gray-50 p-5 text-center hover:border-emerald-400 hover:bg-emerald-50"><Upload className="mb-2 h-6 w-6 text-emerald-600" /><span className="text-sm font-black">Seleccionar imágenes</span><input name="images" type="file" multiple accept="image/jpeg,image/png,image/webp" className="sr-only" onChange={(e) => setFiles(Array.from(e.target.files ?? []).slice(0, 5))} /></label></section>
+      <section className="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7"><div className="flex items-start justify-between gap-4"><div><h2 className="text-lg font-black">Imágenes</h2><p className="mt-1 text-xs text-gray-400">{mode === "update" ? "Déjalo vacío para conservar las actuales; selecciona nuevas para reemplazarlas." : "Entre 1 y 5 imágenes JPG, PNG o WebP."}</p></div><span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-bold text-gray-500">{files.length}/5</span></div><label className="mt-5 flex min-h-32 cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-gray-200 bg-gray-50 p-5 text-center transition hover:border-emerald-400 hover:bg-emerald-50 focus-within:border-emerald-500 focus-within:ring-3 focus-within:ring-emerald-100"><Upload className="mb-2 h-6 w-6 text-emerald-600" /><span className="text-sm font-black">Seleccionar imágenes</span><span className="mt-1 text-xs text-gray-400">La primera será la portada</span><input name="images" type="file" multiple accept="image/jpeg,image/png,image/webp" className="sr-only" onChange={(e) => { setFiles(Array.from(e.currentTarget.files ?? []).slice(0, 5)); e.currentTarget.value = ""; }} /></label>{files.length > 0 && <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-5">{files.map((file, index) => <div key={`${file.name}-${file.lastModified}`} className="group relative aspect-square overflow-hidden rounded-xl border border-gray-200 bg-gray-50"><Image src={previewUrls[index]} alt={`Vista previa ${index + 1}: ${file.name}`} fill unoptimized sizes="160px" className="object-contain p-2" />{index === 0 && <span className="absolute bottom-1.5 left-1.5 rounded-md bg-black px-2 py-1 text-[9px] font-black uppercase tracking-wider text-white">Portada</span>}<button type="button" onClick={() => setFiles((current) => current.filter((_, itemIndex) => itemIndex !== index))} aria-label={`Quitar ${file.name}`} className="absolute right-1.5 top-1.5 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-black/75 text-white transition hover:bg-red-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"><X className="h-4 w-4" /></button></div>)}</div>}</section>
 
       <button disabled={saving} className="inline-flex min-h-14 w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-black px-6 text-sm font-black text-white shadow-lg transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50">{saving ? <LoaderCircle className="h-5 w-5 animate-spin" /> : <Save className="h-5 w-5" />}{saving ? "Guardando…" : mode === "add" ? "Guardar jersey en el catálogo" : "Guardar todos los cambios"}</button>
     </div>
